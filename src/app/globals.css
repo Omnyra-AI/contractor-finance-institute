@@ -1,26 +1,42 @@
 @import "tailwindcss";
 
+/* -------------------- Contractor Finance Institute Brand Tokens -------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0A0D1E;
+  --panel: #1B1F3B;
+  --text: #F7F9FC;
+  --muted: #C3CBDC;
+  --teal: #2ED6C3;
+  --gold: #D4AF37;
+  --violet-start: #7B61FF;
+  --violet-end: #DA70D6;
+  --orange: #FF6B35;
+
+  --radius-16: 16px;
+  --radius-24: 24px;
+
+  --shadow-soft: 0 8px 28px rgba(0, 0, 0, 0.35);
+  --glow-teal: 0 0 24px color-mix(in srgb, var(--teal) 40%, transparent);
+  --glow-gold: 0 0 24px color-mix(in srgb, var(--gold) 40%, transparent);
+
+  accent-color: var(--teal);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* ------------------------------ Base resets --------------------------------- */
+html { color-scheme: dark; scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(1200px 800px at 70% -10%, color-mix(in srgb, var(--violet-start) 6%, transparent), transparent),
+    radial-gradient(900px 600px at -20% 10%, color-mix(in srgb, var(--teal) 8%, transparent), transparent),
+    var(--bg);
+  color: var(--text);
 }
+
+::selection {
+  background-color: var(--teal);
+  color: var(--bg);
+}
+
+a { color: var(--teal); }
+a:hover { text-decoration: underline; }

@@ -1,75 +1,113 @@
+"use client";
+
 import Link from "next/link";
-import type { Metadata } from "next";
+import { useState, useEffect } from "react";
+import { contractorFinanceFundamentals, getTotalLessons } from "@/lib/course-data";
+import { AudioPlayer } from "@/components/AudioPlayer";
+import { KnowledgeCheck } from "@/components/KnowledgeCheck";
+import { Certificate } from "@/components/Certificate";
+import {
+  getCourseProgress,
+  initCourseProgress,
+  markLessonCompleted,
+  recordQuizAttempt,
+  isLessonCompleted,
+  isModulePassed,
+  areAllModulesPassed,
+  completeCourse,
+  getCourseProgressPercentage,
+  type CourseProgress,
+} from "@/lib/progress";
 
-export const metadata: Metadata = {
-  title: "Contractor Finance Fundamentals | Contractor Finance Institute",
-  description:
-    "Master the basics of contractor accounting: P&L, balance sheets, job costing, and the metrics that actually matter for construction businesses.",
-};
-
-const modules = [
-  {
-    number: 1,
-    title: "Understanding Your Financial Statements",
-    duration: "25 min",
-    lessons: [
-      "The Profit & Loss Statement: What It Actually Tells You",
-      "Balance Sheet Basics for Contractors",
-      "Cash Flow Statement: The Most Important Report",
-      "How These Three Reports Connect",
-    ],
-  },
-  {
-    number: 2,
-    title: "Job Costing Basics",
-    duration: "30 min",
-    lessons: [
-      "Why Job Costing Matters More Than Overall Profit",
-      "Direct Costs vs Indirect Costs",
-      "Labor Burden: The Hidden Cost",
-      "Tracking Costs by Job in Practice",
-    ],
-  },
-  {
-    number: 3,
-    title: "Key Metrics for Contractors",
-    duration: "20 min",
-    lessons: [
-      "Gross Margin by Job Type",
-      "Days Sales Outstanding (DSO)",
-      "Work in Progress (WIP) Tracking",
-      "Cash Runway: How Long Can You Survive?",
-    ],
-  },
-  {
-    number: 4,
-    title: "Pricing for Profit",
-    duration: "25 min",
-    lessons: [
-      "Markup vs Margin: The Critical Difference",
-      "Calculating Your Required Markup",
-      "Covering Overhead in Every Bid",
-      "When to Walk Away from a Job",
-    ],
-  },
-  {
-    number: 5,
-    title: "Common Financial Mistakes",
-    duration: "20 min",
-    lessons: [
-      "Confusing Profit with Cash",
-      "Underpricing Labor",
-      "Ignoring Overhead Recovery",
-      "Growing Too Fast Without Capital",
-    ],
-  },
-];
+type ViewMode = "overview" | "lesson" | "quiz" | "certificate";
 
 export default function ContractorFinanceFundamentalsPage() {
-  return (
-    <>
-      {/* Header */}
-      <section className="py-16 md:py-24">
+  const course = contractorFinanceFundamentals;
+  const [viewMode, setViewMode] = useState<ViewMode>("overview");
+  const [currentModuleIndex, setCurrentModuleIndex] = useState(0);
+  const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
+  const [progress, setProgress] = useState<CourseProgress | null>(null);
+  const [progressPercentage, setProgressPercentage] = useState(0);
+
+  const currentModule = course.modules[currentModuleIndex];
+  const currentLesson = currentModule?.lessons[currentLessonIndex];
+  const totalLessons = getTotalLessons(course);
+
+  useEffect(() => {
+    const savedProgress = getCourseProgress(course.id) || initCourseProgress(course.id);
+    setProgress(savedProgress);
+    setProgressPercentage(
+      getCourseProgressPercentage(course.id, totalLessons, course.modules.length)
+    );
+  }, [course.id, totalLessons, course.modules.length]);
+
+  const handleLessonComplete = () => {
+    const newProgress = markLessonCompleted(course.id, currentLesson.id);
+    setProgress(newProgress);
+    setProgressPercentage(
+      getCourseProgressPercentage(course.id, totalLessons, course.modules.length)
+    );
+  };
+
+  const handleQuizComplete = (score: number, passed: boolean, answers: Record<string, number>) => {
+    const newProgress = recordQuizAttempt(course.id, currentModule.id, score, passed, answers);
+    setProgress(newProgress);
+    setProgressPercentage(
+      getCourseProgressPercentage(course.id, totalLessons, course.modules.length)
+    );
+
+    // Check if course is complete
+    if (passed && areAllModulesPassed(course.id, course.modules.map(m => m.id))) {
+      completeCourse(course.id);
+      setProgress(getCourseProgress(course.id));
+    }
+  };
+
+  const startLesson = (moduleIndex: number, lessonIndex: number) => {
+    setCurrentModuleIndex(moduleIndex);
+    setCurrentLessonIndex(lessonIndex);
+    setViewMode("lesson");
+  };
+
+  const startQuiz = (moduleIndex: number) => {
+    setCurrentModuleIndex(moduleIndex);
+    setViewMode("quiz");
+  };
+
+  const goToNextLesson = () => {
+    if (currentLessonIndex < currentModule.lessons.length - 1) {
+      setCurrentLessonIndex(currentLessonIndex + 1);
+    } else {
+      // End of module lessons, go to quiz
+      setViewMode("quiz");
+    }
+  };
+
+  const goToPreviousLesson = () => {
+    if (currentLessonIndex > 0) {
+      setCurrentLessonIndex(currentLessonIndex - 1);
+    } else if (currentModuleIndex > 0) {
+      const prevModule = course.modules[currentModuleIndex - 1];
+      setCurrentModuleIndex(currentModuleIndex - 1);
+      setCurrentLessonIndex(prevModule.lessons.length - 1);
+    }
+  };
+
+  const goToNextModule = () => {
+    if (currentModuleIndex < course.modules.length - 1) {
+      setCurrentModuleIndex(currentModuleIndex + 1);
+      setCurrentLessonIndex(0);
+      setViewMode("lesson");
+    } else {
+      // Course complete
+      setViewMode("certificate");
+    }
+  };
+
+  // Certificate view
+  if (viewMode === "certificate" || progress?.certificateId) {
+    return (
+      <div className="py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/courses"
@@ -77,145 +115,372 @@ export default function ContractorFinanceFundamentalsPage() {
           >
             ← Back to Courses
           </Link>
-          <div className="flex items-center gap-3 mb-4">
-            <span className="text-xs text-[var(--teal)] font-medium uppercase tracking-wider">
-              Beginner
-            </span>
-            <span className="text-xs text-[var(--muted)]">•</span>
-            <span className="text-xs text-[var(--muted)]">5 modules</span>
-            <span className="text-xs text-[var(--muted)]">•</span>
-            <span className="text-xs text-[var(--muted)]">2 hours</span>
-          </div>
-          <h1 className="text-3xl md:text-5xl font-bold text-[var(--text)] mb-6">
-            Contractor Finance Fundamentals
-          </h1>
-          <p className="text-xl text-[var(--muted)] mb-8">
-            Master the basics of contractor accounting: P&L, balance sheets,
-            job costing, and the metrics that actually matter for construction
-            businesses.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="#module-1"
-              className="px-6 py-3 bg-[#0A0D1E] text-[var(--teal)] font-semibold rounded-xl border border-[var(--teal)] hover:no-underline hover:bg-[var(--teal)] hover:text-black transition-all text-center"
-            >
-              Start Module 1 Free
-            </a>
-          </div>
-        </div>
-      </section>
 
-      {/* Course Overview */}
-      <section className="py-8">
+          <div className="text-center mb-12">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-[var(--teal)]/10 border border-[var(--teal)]/30 text-[var(--teal)] text-sm font-medium mb-4">
+              Course Completed!
+            </div>
+            <h1 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-4">
+              Congratulations!
+            </h1>
+            <p className="text-[var(--muted)] text-lg">
+              You&apos;ve successfully completed {course.title}
+            </p>
+          </div>
+
+          {progress?.certificateId && progress.completedAt && (
+            <Certificate
+              courseName={course.title}
+              certificateId={progress.certificateId}
+              completedAt={progress.completedAt}
+            />
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  // Quiz view
+  if (viewMode === "quiz") {
+    const modulePassed = isModulePassed(course.id, currentModule.id);
+
+    return (
+      <div className="py-16 md:py-24">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <button
+            onClick={() => setViewMode("overview")}
+            className="text-[var(--teal)] hover:underline text-sm mb-6 inline-block"
+          >
+            ← Back to Course
+          </button>
+
+          <div className="mb-8">
+            <div className="flex items-center gap-3 mb-2">
+              <span className="w-8 h-8 rounded-full bg-[var(--teal)]/20 text-[var(--teal)] flex items-center justify-center text-sm font-bold">
+                {currentModule.number}
+              </span>
+              <span className="text-xs text-[var(--muted)] uppercase tracking-wider">
+                Knowledge Check
+              </span>
+            </div>
+            <h1 className="text-2xl font-bold text-[var(--text)]">
+              {currentModule.title}
+            </h1>
+          </div>
+
+          {modulePassed ? (
+            <div className="bg-[var(--panel)] rounded-2xl p-8 border border-white/10 text-center">
+              <div className="w-20 h-20 mx-auto rounded-full bg-[var(--teal)]/20 flex items-center justify-center mb-6">
+                <svg className="w-10 h-10 text-[var(--teal)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-[var(--teal)] mb-4">
+                Module Already Passed!
+              </h3>
+              <p className="text-[var(--muted)] mb-6">
+                You&apos;ve already passed this module&apos;s knowledge check.
+              </p>
+              <button
+                onClick={goToNextModule}
+                className="px-6 py-3 bg-[var(--teal)] text-black font-semibold rounded-xl hover:bg-[var(--teal)]/80 transition-all"
+              >
+                {currentModuleIndex < course.modules.length - 1 ? "Continue to Next Module" : "Get Certificate"}
+              </button>
+            </div>
+          ) : (
+            <KnowledgeCheck
+              questions={currentModule.knowledgeCheck}
+              moduleId={currentModule.id}
+              passingScore={course.passingScore}
+              onComplete={(score, passed, answers) => {
+                handleQuizComplete(score, passed, answers);
+                if (passed) {
+                  // Show success then allow navigation
+                }
+              }}
+            />
+          )}
+
+          {modulePassed || (
+            <div className="mt-6 text-center">
+              <button
+                onClick={goToNextModule}
+                className="text-[var(--muted)] hover:text-[var(--text)] text-sm"
+              >
+                Skip quiz for now →
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  // Lesson view
+  if (viewMode === "lesson" && currentLesson) {
+    const lessonCompleted = isLessonCompleted(course.id, currentLesson.id);
+
+    return (
+      <div className="py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-6 rounded-2xl bg-[var(--panel)]/50 border border-white/5 mb-8">
-            <h2 className="text-xl font-semibold text-[var(--text)] mb-4">
-              What You&apos;ll Learn
-            </h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              <ul className="space-y-2">
-                <li className="text-[var(--muted)] flex items-start gap-2">
-                  <span className="text-[var(--teal)] mt-1">✓</span>
-                  Read and understand financial statements
-                </li>
-                <li className="text-[var(--muted)] flex items-start gap-2">
-                  <span className="text-[var(--teal)] mt-1">✓</span>
-                  Track costs by job, not just overall
-                </li>
-                <li className="text-[var(--muted)] flex items-start gap-2">
-                  <span className="text-[var(--teal)] mt-1">✓</span>
-                  Calculate true labor burden
-                </li>
-              </ul>
-              <ul className="space-y-2">
-                <li className="text-[var(--muted)] flex items-start gap-2">
-                  <span className="text-[var(--teal)] mt-1">✓</span>
-                  Price jobs to cover overhead and profit
-                </li>
-                <li className="text-[var(--muted)] flex items-start gap-2">
-                  <span className="text-[var(--teal)] mt-1">✓</span>
-                  Monitor key contractor-specific metrics
-                </li>
-                <li className="text-[var(--muted)] flex items-start gap-2">
-                  <span className="text-[var(--teal)] mt-1">✓</span>
-                  Avoid common financial mistakes
-                </li>
-              </ul>
+          <button
+            onClick={() => setViewMode("overview")}
+            className="text-[var(--teal)] hover:underline text-sm mb-6 inline-block"
+          >
+            ← Back to Course
+          </button>
+
+          {/* Module/Lesson header */}
+          <div className="mb-8">
+            <div className="flex items-center gap-3 mb-2">
+              <span className="w-8 h-8 rounded-full bg-[var(--teal)]/20 text-[var(--teal)] flex items-center justify-center text-sm font-bold">
+                {currentModule.number}
+              </span>
+              <span className="text-xs text-[var(--muted)]">
+                Module {currentModule.number} • Lesson {currentLessonIndex + 1} of {currentModule.lessons.length}
+              </span>
+            </div>
+            <h1 className="text-2xl md:text-3xl font-bold text-[var(--text)]">
+              {currentLesson.title}
+            </h1>
+            <p className="text-[var(--muted)] mt-2">{currentLesson.duration}</p>
+          </div>
+
+          {/* Audio Player */}
+          <div className="mb-8">
+            <AudioPlayer
+              lessonId={currentLesson.id}
+              transcript={currentLesson.transcript}
+              onComplete={handleLessonComplete}
+            />
+          </div>
+
+          {/* Transcript */}
+          <div className="bg-[var(--panel)]/50 rounded-2xl p-6 md:p-8 border border-white/5 mb-8">
+            <h3 className="text-lg font-semibold text-[var(--text)] mb-4">Transcript</h3>
+            <div className="prose prose-invert max-w-none">
+              {currentLesson.transcript.split("\n\n").map((paragraph, index) => (
+                <p key={index} className="text-[var(--muted)] mb-4 leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Modules */}
-      <section className="py-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-[var(--text)] mb-6">
-            Course Modules
-          </h2>
-          <div className="space-y-4">
-            {modules.map((module) => (
-              <div
-                key={module.number}
-                id={`module-${module.number}`}
-                className="p-6 rounded-2xl bg-[var(--panel)]/50 border border-white/5"
+          {/* Key Points */}
+          <div className="bg-[var(--teal)]/10 rounded-2xl p-6 border border-[var(--teal)]/20 mb-8">
+            <h3 className="text-lg font-semibold text-[var(--text)] mb-4">Key Points</h3>
+            <ul className="space-y-2">
+              {currentLesson.keyPoints.map((point, index) => (
+                <li key={index} className="flex items-start gap-3 text-[var(--muted)]">
+                  <span className="text-[var(--teal)] mt-1">✓</span>
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Navigation */}
+          <div className="flex items-center justify-between">
+            <button
+              onClick={goToPreviousLesson}
+              disabled={currentModuleIndex === 0 && currentLessonIndex === 0}
+              className="px-6 py-3 bg-[var(--panel)] text-[var(--text)] font-semibold rounded-xl border border-white/10 hover:border-white/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              ← Previous
+            </button>
+
+            {!lessonCompleted && (
+              <button
+                onClick={handleLessonComplete}
+                className="px-6 py-3 bg-[var(--panel)] text-[var(--teal)] font-semibold rounded-xl border border-[var(--teal)]/50 hover:border-[var(--teal)] transition-all"
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="w-8 h-8 rounded-full bg-[var(--teal)]/20 text-[var(--teal)] flex items-center justify-center text-sm font-bold">
-                        {module.number}
+                Mark Complete
+              </button>
+            )}
+
+            <button
+              onClick={goToNextLesson}
+              className="px-6 py-3 bg-[var(--teal)] text-black font-semibold rounded-xl hover:bg-[var(--teal)]/80 transition-all"
+            >
+              {currentLessonIndex < currentModule.lessons.length - 1
+                ? "Next Lesson →"
+                : "Take Quiz →"}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Overview view (default)
+  return (
+    <div className="py-16 md:py-24">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Link
+          href="/courses"
+          className="text-[var(--teal)] hover:underline text-sm mb-6 inline-block"
+        >
+          ← Back to Courses
+        </Link>
+
+        {/* Header */}
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-xs text-[var(--teal)] font-medium uppercase tracking-wider">
+              {course.level}
+            </span>
+            <span className="text-xs text-[var(--muted)]">•</span>
+            <span className="text-xs text-[var(--muted)]">{course.modules.length} modules</span>
+            <span className="text-xs text-[var(--muted)]">•</span>
+            <span className="text-xs text-[var(--muted)]">{course.duration}</span>
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-4">
+            {course.title}
+          </h1>
+          <p className="text-xl text-[var(--muted)]">{course.description}</p>
+        </div>
+
+        {/* Progress Bar */}
+        {progress && (
+          <div className="bg-[var(--panel)] rounded-xl p-4 border border-white/10 mb-8">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm text-[var(--muted)]">Course Progress</span>
+              <span className="text-sm font-medium text-[var(--teal)]">{progressPercentage}%</span>
+            </div>
+            <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-[var(--teal)] transition-all duration-500"
+                style={{ width: `${progressPercentage}%` }}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Modules */}
+        <div className="space-y-6">
+          {course.modules.map((module, moduleIndex) => {
+            const modulePassed = isModulePassed(course.id, module.id);
+            const allLessonsCompleted = module.lessons.every(
+              lesson => isLessonCompleted(course.id, lesson.id)
+            );
+
+            return (
+              <div
+                key={module.id}
+                className="bg-[var(--panel)]/50 rounded-2xl border border-white/5 overflow-hidden"
+              >
+                {/* Module Header */}
+                <div className="p-6 border-b border-white/5">
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-start gap-4">
+                      <span className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
+                        modulePassed
+                          ? "bg-[var(--teal)] text-black"
+                          : "bg-[var(--teal)]/20 text-[var(--teal)]"
+                      }`}>
+                        {modulePassed ? "✓" : module.number}
                       </span>
-                      <span className="text-xs text-[var(--muted)]">
-                        {module.duration}
-                      </span>
+                      <div>
+                        <h3 className="text-xl font-semibold text-[var(--text)]">
+                          {module.title}
+                        </h3>
+                        <p className="text-sm text-[var(--muted)] mt-1">
+                          {module.lessons.length} lessons • {module.duration} • {module.knowledgeCheck.length} quiz questions
+                        </p>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-[var(--text)]">
-                      {module.title}
-                    </h3>
+                    {modulePassed && (
+                      <span className="px-3 py-1 bg-[var(--teal)]/10 text-[var(--teal)] text-xs font-medium rounded-full">
+                        Passed
+                      </span>
+                    )}
                   </div>
                 </div>
-                <ul className="space-y-2 mb-4">
-                  {module.lessons.map((lesson, index) => (
-                    <li
-                      key={index}
-                      className="text-[var(--muted)] text-sm flex items-center gap-2"
-                    >
-                      <span className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center text-xs">
-                        {index + 1}
-                      </span>
-                      {lesson}
-                    </li>
-                  ))}
-                </ul>
-                <button className="text-[var(--teal)] text-sm font-medium hover:underline">
-                  Start Module →
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Next Steps */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-6 rounded-2xl bg-gradient-to-br from-[var(--teal)]/10 to-[var(--violet-start)]/10 border border-[var(--teal)]/20">
+                {/* Lessons */}
+                <div className="divide-y divide-white/5">
+                  {module.lessons.map((lesson, lessonIndex) => {
+                    const completed = isLessonCompleted(course.id, lesson.id);
+
+                    return (
+                      <button
+                        key={lesson.id}
+                        onClick={() => startLesson(moduleIndex, lessonIndex)}
+                        className="w-full p-4 flex items-center gap-4 hover:bg-white/5 transition-colors text-left"
+                      >
+                        <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm ${
+                          completed
+                            ? "bg-[var(--teal)]/20 text-[var(--teal)]"
+                            : "bg-white/10 text-[var(--muted)]"
+                        }`}>
+                          {completed ? "✓" : lessonIndex + 1}
+                        </span>
+                        <div className="flex-1">
+                          <p className="text-[var(--text)] font-medium">{lesson.title}</p>
+                          <p className="text-xs text-[var(--muted)]">{lesson.duration}</p>
+                        </div>
+                        <span className="text-[var(--teal)]">→</span>
+                      </button>
+                    );
+                  })}
+
+                  {/* Quiz button */}
+                  <button
+                    onClick={() => startQuiz(moduleIndex)}
+                    className={`w-full p-4 flex items-center gap-4 transition-colors text-left ${
+                      allLessonsCompleted
+                        ? "hover:bg-[var(--gold)]/10"
+                        : "opacity-50 cursor-not-allowed"
+                    }`}
+                    disabled={!allLessonsCompleted && !modulePassed}
+                  >
+                    <span className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                      modulePassed
+                        ? "bg-[var(--gold)]/20 text-[var(--gold)]"
+                        : "bg-white/10 text-[var(--muted)]"
+                    }`}>
+                      {modulePassed ? "✓" : "?"}
+                    </span>
+                    <div className="flex-1">
+                      <p className={`font-medium ${modulePassed ? "text-[var(--gold)]" : "text-[var(--text)]"}`}>
+                        Knowledge Check
+                      </p>
+                      <p className="text-xs text-[var(--muted)]">
+                        {module.knowledgeCheck.length} questions • {course.passingScore}% to pass
+                      </p>
+                    </div>
+                    <span className="text-[var(--gold)]">→</span>
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Get Certificate CTA */}
+        {areAllModulesPassed(course.id, course.modules.map(m => m.id)) && !progress?.certificateId && (
+          <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-[var(--teal)]/10 to-[var(--gold)]/10 border border-[var(--teal)]/20 text-center">
             <h3 className="text-xl font-semibold text-[var(--text)] mb-2">
-              After This Course
+              All Modules Complete!
             </h3>
             <p className="text-[var(--muted)] mb-4">
-              Ready to put this into practice? Set up QuickBooks the right way
-              with our next course.
+              You&apos;ve passed all knowledge checks. Get your certificate now!
             </p>
-            <Link
-              href="/courses/quickbooks-setup"
-              className="inline-block px-6 py-3 bg-[#0A0D1E] text-[var(--teal)] font-semibold rounded-xl border border-[var(--teal)] hover:no-underline hover:bg-[var(--teal)] hover:text-black transition-all"
+            <button
+              onClick={() => {
+                completeCourse(course.id);
+                setProgress(getCourseProgress(course.id));
+                setViewMode("certificate");
+              }}
+              className="px-6 py-3 bg-[var(--teal)] text-black font-semibold rounded-xl hover:bg-[var(--teal)]/80 transition-all"
             >
-              QuickBooks Setup for Contractors →
-            </Link>
+              Get Your Certificate
+            </button>
           </div>
-        </div>
-      </section>
-    </>
+        )}
+      </div>
+    </div>
   );
 }

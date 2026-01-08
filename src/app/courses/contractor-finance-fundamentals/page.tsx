@@ -6,6 +6,7 @@ import { contractorFinanceFundamentals, getTotalLessons } from "@/lib/course-dat
 import { AudioPlayer } from "@/components/AudioPlayer";
 import { KnowledgeCheck } from "@/components/KnowledgeCheck";
 import { Certificate } from "@/components/Certificate";
+import { LessonSlides, generateLessonSlides } from "@/components/LessonSlides";
 import {
   getCourseProgress,
   initCourseProgress,
@@ -28,10 +29,13 @@ export default function ContractorFinanceFundamentalsPage() {
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [progress, setProgress] = useState<CourseProgress | null>(null);
   const [progressPercentage, setProgressPercentage] = useState(0);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [showTranscript, setShowTranscript] = useState(false);
 
   const currentModule = course.modules[currentModuleIndex];
   const currentLesson = currentModule?.lessons[currentLessonIndex];
   const totalLessons = getTotalLessons(course);
+  const slides = currentLesson ? generateLessonSlides(currentLesson.id, currentLesson.keyPoints) : [];
 
   useEffect(() => {
     const savedProgress = getCourseProgress(course.id) || initCourseProgress(course.id);
@@ -66,6 +70,8 @@ export default function ContractorFinanceFundamentalsPage() {
   const startLesson = (moduleIndex: number, lessonIndex: number) => {
     setCurrentModuleIndex(moduleIndex);
     setCurrentLessonIndex(lessonIndex);
+    setCurrentSlideIndex(0);
+    setShowTranscript(false);
     setViewMode("lesson");
   };
 
@@ -75,6 +81,8 @@ export default function ContractorFinanceFundamentalsPage() {
   };
 
   const goToNextLesson = () => {
+    setCurrentSlideIndex(0);
+    setShowTranscript(false);
     if (currentLessonIndex < currentModule.lessons.length - 1) {
       setCurrentLessonIndex(currentLessonIndex + 1);
     } else {
@@ -84,6 +92,8 @@ export default function ContractorFinanceFundamentalsPage() {
   };
 
   const goToPreviousLesson = () => {
+    setCurrentSlideIndex(0);
+    setShowTranscript(false);
     if (currentLessonIndex > 0) {
       setCurrentLessonIndex(currentLessonIndex - 1);
     } else if (currentModuleIndex > 0) {
@@ -222,33 +232,64 @@ export default function ContractorFinanceFundamentalsPage() {
     const lessonCompleted = isLessonCompleted(course.id, currentLesson.id);
 
     return (
-      <div className="py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <button
-            onClick={() => setViewMode("overview")}
-            className="text-[var(--teal)] hover:underline text-sm mb-6 inline-block"
-          >
-            ← Back to Course
-          </button>
+      <div className="min-h-screen bg-[var(--bg)]">
+        {/* Top Navigation Bar */}
+        <div className="sticky top-0 z-10 bg-[var(--bg)]/95 backdrop-blur border-b border-white/10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div className="flex items-center justify-between">
+              <button
+                onClick={() => setViewMode("overview")}
+                className="text-[var(--teal)] hover:underline text-sm flex items-center gap-2"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                Back to Course
+              </button>
 
-          {/* Module/Lesson header */}
-          <div className="mb-8">
-            <div className="flex items-center gap-3 mb-2">
-              <span className="w-8 h-8 rounded-full bg-[var(--teal)]/20 text-[var(--teal)] flex items-center justify-center text-sm font-bold">
-                {currentModule.number}
-              </span>
-              <span className="text-xs text-[var(--muted)]">
-                Module {currentModule.number} • Lesson {currentLessonIndex + 1} of {currentModule.lessons.length}
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="w-7 h-7 rounded-full bg-[var(--teal)]/20 text-[var(--teal)] flex items-center justify-center text-xs font-bold">
+                  {currentModule.number}
+                </span>
+                <span className="text-sm text-[var(--muted)] hidden sm:block">
+                  Module {currentModule.number} • Lesson {currentLessonIndex + 1}/{currentModule.lessons.length}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                {lessonCompleted && (
+                  <span className="px-2 py-1 bg-[var(--teal)]/10 text-[var(--teal)] text-xs font-medium rounded-full flex items-center gap-1">
+                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Complete
+                  </span>
+                )}
+              </div>
             </div>
-            <h1 className="text-2xl md:text-3xl font-bold text-[var(--text)]">
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Lesson Title */}
+          <div className="text-center mb-8">
+            <h1 className="text-2xl md:text-3xl font-bold text-[var(--text)] mb-2">
               {currentLesson.title}
             </h1>
-            <p className="text-[var(--muted)] mt-2">{currentLesson.duration}</p>
+            <p className="text-[var(--muted)]">{currentLesson.duration}</p>
           </div>
 
-          {/* Audio Player */}
+          {/* Main Content - Slides */}
           <div className="mb-8">
+            <LessonSlides
+              slides={slides}
+              currentSlideIndex={currentSlideIndex}
+              onSlideChange={setCurrentSlideIndex}
+            />
+          </div>
+
+          {/* Audio Player - Floating bottom card */}
+          <div className="bg-[var(--panel)] rounded-2xl p-4 border border-white/10 mb-6">
             <AudioPlayer
               lessonId={currentLesson.id}
               transcript={currentLesson.transcript}
@@ -256,33 +297,59 @@ export default function ContractorFinanceFundamentalsPage() {
             />
           </div>
 
-          {/* Transcript */}
-          <div className="bg-[var(--panel)]/50 rounded-2xl p-6 md:p-8 border border-white/5 mb-8">
-            <h3 className="text-lg font-semibold text-[var(--text)] mb-4">Transcript</h3>
-            <div className="prose prose-invert max-w-none">
-              {currentLesson.transcript.split("\n\n").map((paragraph, index) => (
-                <p key={index} className="text-[var(--muted)] mb-4 leading-relaxed">
-                  {paragraph}
-                </p>
+          {/* Key Points Summary */}
+          <div className="bg-[var(--teal)]/5 rounded-2xl p-6 border border-[var(--teal)]/20 mb-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-[var(--text)]">Key Takeaways</h3>
+              <span className="text-xs text-[var(--muted)]">{currentLesson.keyPoints.length} points</span>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {currentLesson.keyPoints.map((point, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-3 p-3 bg-white/5 rounded-xl"
+                >
+                  <span className="w-6 h-6 rounded-full bg-[var(--teal)]/20 text-[var(--teal)] flex items-center justify-center text-xs font-bold shrink-0">
+                    {index + 1}
+                  </span>
+                  <span className="text-sm text-[var(--muted)]">{point}</span>
+                </div>
               ))}
             </div>
           </div>
 
-          {/* Key Points */}
-          <div className="bg-[var(--teal)]/10 rounded-2xl p-6 border border-[var(--teal)]/20 mb-8">
-            <h3 className="text-lg font-semibold text-[var(--text)] mb-4">Key Points</h3>
-            <ul className="space-y-2">
-              {currentLesson.keyPoints.map((point, index) => (
-                <li key={index} className="flex items-start gap-3 text-[var(--muted)]">
-                  <span className="text-[var(--teal)] mt-1">✓</span>
-                  {point}
-                </li>
-              ))}
-            </ul>
+          {/* Transcript Toggle */}
+          <div className="mb-8">
+            <button
+              onClick={() => setShowTranscript(!showTranscript)}
+              className="w-full flex items-center justify-between p-4 bg-[var(--panel)]/50 rounded-xl border border-white/5 hover:border-white/10 transition-all"
+            >
+              <span className="text-[var(--text)] font-medium">Full Transcript</span>
+              <svg
+                className={`w-5 h-5 text-[var(--muted)] transition-transform ${showTranscript ? "rotate-180" : ""}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {showTranscript && (
+              <div className="mt-4 p-6 bg-[var(--panel)]/30 rounded-xl border border-white/5">
+                <div className="prose prose-invert max-w-none">
+                  {currentLesson.transcript.split("\n\n").map((paragraph, index) => (
+                    <p key={index} className="text-[var(--muted)] mb-4 leading-relaxed text-sm">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Navigation */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-4">
             <button
               onClick={goToPreviousLesson}
               disabled={currentModuleIndex === 0 && currentLessonIndex === 0}

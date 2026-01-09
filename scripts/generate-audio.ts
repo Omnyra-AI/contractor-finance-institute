@@ -10,7 +10,7 @@ const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
 const VOICE_ID = "21m00Tcm4TlvDq8ikWAM"; // Rachel - professional female voice
 
 // Import course data
-import { contractorFinanceFundamentals } from "../src/lib/course-data";
+import { allCourses } from "../src/lib/course-data";
 
 const OUTPUT_DIR = path.join(__dirname, "../public/audio");
 
@@ -60,36 +60,39 @@ async function main() {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   }
 
-  const course = contractorFinanceFundamentals;
   let totalLessons = 0;
   let generated = 0;
   let skipped = 0;
 
-  for (const module of course.modules) {
-    for (const lesson of module.lessons) {
-      totalLessons++;
-      const outputPath = path.join(OUTPUT_DIR, `${lesson.id}.mp3`);
+  for (const course of allCourses) {
+    console.log(`\n📚 Processing course: ${course.title}`);
 
-      // Skip if already exists
-      if (fs.existsSync(outputPath)) {
-        console.log(`⏭ Skipping ${lesson.id} (already exists)`);
-        skipped++;
-        continue;
-      }
+    for (const module of course.modules) {
+      for (const lesson of module.lessons) {
+        totalLessons++;
+        const outputPath = path.join(OUTPUT_DIR, `${lesson.id}.mp3`);
 
-      try {
-        await generateAudio(lesson.transcript, lesson.id);
-        generated++;
+        // Skip if already exists
+        if (fs.existsSync(outputPath)) {
+          console.log(`⏭ Skipping ${lesson.id} (already exists)`);
+          skipped++;
+          continue;
+        }
 
-        // Rate limit: ElevenLabs has limits, wait between requests
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-      } catch (error) {
-        console.error(`✗ Failed to generate ${lesson.id}:`, error);
+        try {
+          await generateAudio(lesson.transcript, lesson.id);
+          generated++;
+
+          // Rate limit: ElevenLabs has limits, wait between requests
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        } catch (error) {
+          console.error(`✗ Failed to generate ${lesson.id}:`, error);
+        }
       }
     }
   }
 
-  console.log(`\nComplete!`);
+  console.log(`\n✅ Complete!`);
   console.log(`Total lessons: ${totalLessons}`);
   console.log(`Generated: ${generated}`);
   console.log(`Skipped: ${skipped}`);

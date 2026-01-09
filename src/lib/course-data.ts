@@ -909,6 +909,1254 @@ That completes the Contractor Finance Fundamentals course. Take the final knowle
   ]
 };
 
+// QuickBooks Setup for Contractors Course
+export const quickbooksSetupForContractors: Course = {
+  id: "quickbooks-setup-contractors",
+  title: "QuickBooks Setup for Contractors",
+  slug: "quickbooks-setup-contractors",
+  description: "Configure QuickBooks Online the right way for your contracting business: chart of accounts, job costing, classes, and reporting that actually works.",
+  duration: "1.5 hours",
+  level: "Beginner",
+  passingScore: 80,
+  modules: [
+    {
+      id: "qb-module-1",
+      number: 1,
+      title: "Setting Up Your Chart of Accounts",
+      duration: "30 min",
+      description: "Create a chart of accounts designed specifically for contractors that enables proper job costing and financial reporting.",
+      lessons: [
+        {
+          id: "qb1-l1",
+          title: "Why Your Default Chart of Accounts Is Wrong",
+          duration: "7 min",
+          transcript: `Welcome to QuickBooks Setup for Contractors. I'm going to show you how to configure QuickBooks Online specifically for a contracting business. And we're going to start with the most fundamental thing: your chart of accounts.
+
+When you first set up QuickBooks, it gives you a default chart of accounts. That default is designed for a generic small business—a coffee shop, a consultant, a retailer. It is not designed for a contractor, and using it as-is will make your life harder and your reports useless.
+
+Here's what's wrong with the default setup. First, there's no separation between Cost of Goods Sold and Operating Expenses that makes sense for construction. The default might have one COGS account for "Cost of Goods Sold" and then a bunch of expense accounts. But as a contractor, you need to track direct job costs separately from overhead. Materials, labor, and subs for jobs are fundamentally different from your truck payment and office rent.
+
+Second, the default doesn't support job costing. To know which jobs are profitable, you need your costs structured in a way that lets you track them by job. The default chart doesn't set you up for that.
+
+Third, the account names are generic. "Supplies" could mean anything. "Automobile Expense" lumps everything together. You need specificity. "Job Materials," "Subcontractor Payments," "Vehicle Fuel," "Vehicle Maintenance"—these tell you something actionable.
+
+Here's the structure we're going to build. Under Cost of Goods Sold, you'll have accounts for: Direct Labor, Job Materials, Subcontractor Payments, Equipment Rental, and Permits and Fees. These are your direct job costs.
+
+Under Operating Expenses, you'll separate: Vehicle Expenses (broken into Fuel, Maintenance, Insurance), Office Expenses (Rent, Utilities, Supplies), Insurance (General Liability, Workers Comp, Vehicle), Marketing, Professional Fees, and Owner Compensation.
+
+This structure does two things. First, it separates direct costs from overhead so you can calculate true gross profit. Second, it gives you enough detail to actually understand where your money goes without being so granular that it's unmanageable.
+
+In the next lesson, I'll walk you through creating these accounts in QuickBooks step by step.`,
+          keyPoints: [
+            "Default QuickBooks chart of accounts is designed for generic businesses, not contractors",
+            "Contractors need clear separation between direct job costs (COGS) and overhead",
+            "Direct costs include: Labor, Materials, Subcontractors, Equipment, Permits",
+            "Overhead includes: Vehicles, Office, Insurance, Marketing, Professional Fees",
+            "Proper structure enables job costing and meaningful financial reports"
+          ]
+        },
+        {
+          id: "qb1-l2",
+          title: "Creating Contractor-Specific COGS Accounts",
+          duration: "8 min",
+          transcript: `Now let's create your Cost of Goods Sold accounts in QuickBooks. These are the accounts that will track every dollar you spend directly on jobs.
+
+First, log into QuickBooks Online and go to Settings, then Chart of Accounts. You'll see a list of existing accounts. We're going to add new ones and potentially rename or delete some defaults.
+
+Let's create your first COGS account: Direct Labor. Click "New" at the top right. For Account Type, select "Cost of Goods Sold." For Detail Type, select "Cost of Labor - COGS." Name it "Direct Labor - Crews." In the description, put "Wages and burden for crew labor on job sites." Save it.
+
+Now create your next account: Job Materials. Again, Account Type is "Cost of Goods Sold." Detail Type is "Supplies and Materials - COGS." Name it "Job Materials." Description: "Materials purchased for specific jobs - lumber, drywall, fixtures, etc."
+
+Next is Subcontractor Payments. Account Type: "Cost of Goods Sold." Detail Type: "Cost of Labor - COGS." Name it "Subcontractor Payments." Description: "Payments to subcontractors for job work - electrical, plumbing, HVAC, etc."
+
+Then Equipment Rental. Account Type: "Cost of Goods Sold." Detail Type: "Cost of Labor - COGS." Name it "Equipment Rental - Jobs." Description: "Equipment rentals for specific jobs - excavators, lifts, scaffolding, etc."
+
+Finally, Permits and Fees. Account Type: "Cost of Goods Sold." Detail Type: "Supplies and Materials - COGS." Name it "Permits and Job Fees." Description: "Permits, inspections, and fees for specific jobs."
+
+Now here's a critical setup step. For job costing to work, these COGS accounts need to be tracked by Customer, which in QuickBooks is how you'll track jobs. Go to each account you just created, click Edit, and make sure "Track by Customer" is enabled. This is what allows you to see costs broken down by job.
+
+One thing to avoid: don't create too many COGS sub-accounts. Some contractors want to break out "Lumber" separate from "Drywall" separate from "Fixtures." That level of detail sounds good but becomes a nightmare to maintain. Your suppliers often sell you multiple categories on one invoice. Keep it simple with "Job Materials" and use the memo field or item descriptions for detail when needed.
+
+In the next lesson, we'll set up your Operating Expense accounts—your overhead costs.`,
+          keyPoints: [
+            "Create COGS accounts: Direct Labor, Job Materials, Subcontractors, Equipment Rental, Permits",
+            "Account Type = 'Cost of Goods Sold' for all direct job costs",
+            "Enable 'Track by Customer' on each COGS account for job costing",
+            "Keep COGS accounts simple—don't over-categorize materials",
+            "Use memo fields for additional detail instead of creating excessive sub-accounts"
+          ]
+        },
+        {
+          id: "qb1-l3",
+          title: "Setting Up Operating Expense Accounts",
+          duration: "8 min",
+          transcript: `Now let's set up your Operating Expense accounts—your overhead costs. These are the costs of running your business that aren't tied to specific jobs.
+
+The key principle here is: group related expenses together, but keep enough detail to identify problems. You want to know if vehicle costs are rising, but you probably don't need separate accounts for every vehicle.
+
+Let's start with Vehicle Expenses. In your Chart of Accounts, create a parent account first. Click "New," Account Type "Expenses," Detail Type "Auto," and name it "Vehicle Expenses." Save it.
+
+Now create sub-accounts under Vehicle Expenses. For each, select "Vehicle Expenses" as the parent account. Create these: "Vehicle Fuel" for gas and diesel. "Vehicle Maintenance" for oil changes, repairs, tires. "Vehicle Insurance" for auto insurance premiums. "Vehicle Payments" for loan or lease payments.
+
+Why break out vehicles this way? Because if your vehicle costs spike, you want to know why. Was it a big repair? Is fuel eating you alive? Did insurance go up? This structure tells you.
+
+Next, Office and Administrative expenses. Create a parent called "Office & Admin." Sub-accounts: "Office Rent" for your office or shop space. "Office Utilities" for electric, internet, phone. "Office Supplies" for paper, printer ink, small items. "Software Subscriptions" for QuickBooks, estimating software, apps.
+
+Now Insurance. Separate this from vehicle insurance because it's a different beast. Create a parent "Business Insurance" with sub-accounts: "General Liability Insurance" for GL premiums. "Workers Compensation" for workers comp premiums. Note that vehicle insurance is under Vehicle Expenses—that's intentional for analysis.
+
+Professional Fees get their own category. Create "Professional Fees" with sub-accounts: "Accounting and Bookkeeping" for your accountant or bookkeeper. "Legal Fees" for attorney costs. "Consulting" for business advisors or coaches.
+
+Marketing and Advertising. Create "Marketing" with sub-accounts: "Online Advertising" for Google Ads, Facebook, etc. "Print and Signage" for yard signs, truck wraps, flyers. "Website" for hosting, updates, domain fees.
+
+Finally, Owner Compensation. This is important—your pay should be visible, not buried. Create "Owner Compensation" as an expense account. Some contractors put their pay through payroll, which is fine. But if you take draws, you need to track them, and this account makes them visible.
+
+One more thing: delete or make inactive any default accounts you're not using. A cluttered chart of accounts leads to miscoding errors. If you don't have employees yet, hide the payroll accounts. If you don't do retail, hide inventory accounts. Keep it clean.
+
+Next up: we'll set up Classes in QuickBooks to add another dimension of tracking.`,
+          keyPoints: [
+            "Group related expenses under parent accounts (Vehicle, Office, Insurance, etc.)",
+            "Break down vehicles: Fuel, Maintenance, Insurance, Payments",
+            "Separate business insurance (GL, Workers Comp) from vehicle insurance",
+            "Create visible Owner Compensation account—don't bury your pay",
+            "Delete or hide unused default accounts to prevent miscoding"
+          ]
+        },
+        {
+          id: "qb1-l4",
+          title: "Using Classes for Job Types and Divisions",
+          duration: "7 min",
+          transcript: `QuickBooks has a powerful feature called Classes that most contractors either don't know about or don't use properly. Classes let you categorize transactions in a second dimension beyond your chart of accounts. Used correctly, they transform your reporting.
+
+Here's the concept: Your chart of accounts tells you WHAT you spent money on—labor, materials, fuel. Classes tell you which PART of your business it was for.
+
+Let me give you examples. Say you do both residential remodeling and commercial tenant improvements. You could create two classes: "Residential" and "Commercial." Every transaction you enter gets tagged with one of these classes. Now you can run a Profit & Loss by Class and see: Am I more profitable on residential or commercial work?
+
+Or say you have two crews: a framing crew and a finish crew. Create classes "Framing Division" and "Finish Division." Now you can see which division is more profitable.
+
+To enable Classes, go to Settings, then Account and Settings, then Advanced. Turn on "Track classes." I recommend also enabling "Warn me when a transaction isn't assigned a class." This forces you to classify everything, which makes your reports accurate.
+
+Now let's set up your Classes. Go to Settings, then All Lists, then Classes. Click "New class." For a typical residential contractor, I'd suggest these classes: New Construction, Remodeling, Service and Repair, and Other (for miscellaneous or overhead-only transactions).
+
+For a commercial contractor, consider: Tenant Improvement, Ground-Up Construction, Maintenance Contracts, and Other.
+
+Here's the power: When you enter a bill, you'll code it to an Account (like Job Materials) AND a Class (like Remodeling). When you run your Profit & Loss by Class, you'll see your gross margin on Remodeling versus New Construction versus Service Work. This tells you where to focus.
+
+One warning: Don't create too many classes. Five or six is usually plenty. If you try to track by job type AND crew AND service area AND customer type, you'll never maintain it. Pick the one dimension that matters most for business decisions.
+
+Most contractors find job type or service type to be the most valuable class structure. It answers the question: which type of work should I do more of?
+
+We'll complete this module with a lesson on numbering conventions that make your chart of accounts easier to use.`,
+          keyPoints: [
+            "Classes add a second tracking dimension beyond chart of accounts",
+            "Use classes to track job types (Residential vs Commercial) or divisions",
+            "Enable 'Track classes' and 'Warn when unassigned' in Settings",
+            "Keep classes simple—5-6 categories maximum",
+            "Classes enable P&L by job type to identify most profitable work"
+          ]
+        }
+      ],
+      knowledgeCheck: [
+        {
+          id: "qb1-q1",
+          question: "Why is the default QuickBooks chart of accounts problematic for contractors?",
+          options: ["It has too many accounts", "It doesn't separate direct job costs from overhead", "It's designed for manufacturing", "It requires too much customization"],
+          correctAnswer: 1,
+          explanation: "The default chart of accounts doesn't distinguish between costs that go directly into jobs (materials, labor, subs) and overhead costs. This makes job costing and gross profit calculation impossible."
+        },
+        {
+          id: "qb1-q2",
+          question: "Which setting must be enabled on COGS accounts for job costing to work?",
+          options: ["Track by Location", "Track by Customer", "Track by Class", "Track by Project"],
+          correctAnswer: 1,
+          explanation: "In QuickBooks, jobs are tracked as Customers (or sub-customers). Enabling 'Track by Customer' on COGS accounts allows you to see costs broken down by job."
+        },
+        {
+          id: "qb1-q3",
+          question: "Where should vehicle insurance be categorized in your chart of accounts?",
+          options: ["Under Business Insurance", "Under Vehicle Expenses", "Under General Liability", "Under Operating Expenses"],
+          correctAnswer: 1,
+          explanation: "Vehicle insurance should be a sub-account under Vehicle Expenses. This groups all vehicle-related costs together so you can analyze total vehicle costs as a category."
+        },
+        {
+          id: "qb1-q4",
+          question: "What is the primary purpose of QuickBooks Classes for contractors?",
+          options: ["To track individual customers", "To categorize expenses by type", "To track job types or divisions for P&L comparison", "To manage employee time"],
+          correctAnswer: 2,
+          explanation: "Classes let you categorize transactions by a second dimension (like job type). This enables running P&L by Class to compare profitability across different types of work."
+        },
+        {
+          id: "qb1-q5",
+          question: "How many Classes should most contractors create?",
+          options: ["As many as possible for detailed tracking", "5-6 at most", "One per job", "One per customer"],
+          correctAnswer: 1,
+          explanation: "Keep classes simple—5-6 maximum. Too many classes become impossible to maintain and lead to inconsistent coding. Focus on the one dimension that most impacts business decisions."
+        }
+      ]
+    },
+    {
+      id: "qb-module-2",
+      number: 2,
+      title: "Job Costing in QuickBooks",
+      duration: "30 min",
+      description: "Configure QuickBooks to track costs by job so you know which projects are profitable and which are losing money.",
+      lessons: [
+        {
+          id: "qb2-l1",
+          title: "Setting Up Jobs as Sub-Customers",
+          duration: "7 min",
+          transcript: `Now let's set up the job costing structure in QuickBooks. The key insight is this: QuickBooks doesn't have a dedicated "job" or "project" feature in the way construction software does. Instead, you use the Customer system creatively.
+
+Here's the structure: Each client is a Customer. Each job for that client is a Sub-Customer. If you do a kitchen remodel for John Smith, "John Smith" is the Customer and "Smith Kitchen Remodel" is the Sub-Customer. If you later do a bathroom for him, you add "Smith Bathroom" as another Sub-Customer.
+
+To set this up, go to Sales, then Customers. Click "New customer" to add a new client. Enter their basic info: name, address, email, phone. Save it.
+
+Now click on that customer and click "New customer" again. QuickBooks will ask if this is a sub-customer. Yes, it is. Name this sub-customer with a job identifier—I recommend "Last Name - Project Description" like "Smith - Kitchen Remodel." Make sure "Is sub-customer" is checked and the parent is the correct customer.
+
+Here's a pro tip: Use a consistent naming convention. I recommend: Year, then Customer Name, then brief Project Description. So "2025 Smith Kitchen" or "2025-001 Smith Kitchen." This keeps jobs organized chronologically and makes them easy to find.
+
+Why does this structure matter? Because when you enter bills, you'll assign them to the sub-customer, which is the job. When you create invoices, you'll invoice the sub-customer. At any time, you can run a report showing all income and expenses for that sub-customer—that's your job profitability report.
+
+One critical setting: Go to Settings, then Account and Settings, then Advanced. Make sure "Enable projects" is ON. This adds some project tracking features. Also verify that "Track expenses by customer" is enabled—this is essential for job costing.
+
+Now here's how you'll use this daily. When you enter a bill for materials, you'll select the job (sub-customer) in the "Customer" field. When you enter time for crew labor, you'll assign it to the job. When you enter a subcontractor invoice, you assign it to the job.
+
+Every cost that's directly related to a job gets assigned to that job's sub-customer. Costs that aren't job-specific—like your phone bill or office rent—don't get assigned to any customer.
+
+This might seem like extra work at first, but it becomes automatic. And the payoff is huge: you'll know exactly how much you made or lost on every single job.`,
+          keyPoints: [
+            "Customers = Clients, Sub-Customers = Jobs/Projects",
+            "Use consistent naming: Year + Customer + Project (e.g., '2025 Smith Kitchen')",
+            "Enable 'Projects' and 'Track expenses by customer' in Settings",
+            "Assign every job-related cost to the job's sub-customer",
+            "Non-job costs (overhead) don't get assigned to any customer"
+          ]
+        },
+        {
+          id: "qb2-l2",
+          title: "Entering Bills with Job Costing",
+          duration: "8 min",
+          transcript: `Let's walk through how to enter bills with proper job costing. This is where most contractors either get it right or mess up their entire financial picture.
+
+When a bill comes in—from a supplier, subcontractor, or rental company—you need to code it correctly. Let's use an example: You receive a $5,000 invoice from your lumber supplier for materials used on the Smith Kitchen job.
+
+Go to Expenses, then Bills, then "Create bill." Select the vendor—your lumber supplier. Enter the bill date, due date, and bill number.
+
+Now here's the critical part. In the line item section, you'll enter the account: "Job Materials" (one of the COGS accounts we created). In the Customer column, select "Smith - Kitchen Remodel" (the sub-customer). For the amount, enter $5,000. If you're using Classes, select the appropriate class like "Remodeling."
+
+This single entry does three things: It records the expense in your Job Materials account (so your P&L is accurate). It assigns the cost to the Smith Kitchen job (so your job costing is accurate). And it tracks it under the Remodeling class (so your P&L by Class is accurate).
+
+Now let's do a more complex example. Say you have a $12,000 bill from a supplier, but it covers three different jobs. Don't just lump it all together. Enter three line items: $6,000 to "Job Materials" assigned to "Smith Kitchen." $4,000 to "Job Materials" assigned to "Johnson Bathroom." $2,000 to "Job Materials" assigned to "Williams Deck." Same account, different customers.
+
+What about a bill that's NOT job-related? Say your $200 phone bill. Go through the same process, but leave the Customer field blank. Code it to "Office Utilities" or whatever expense account is appropriate. No customer means no job—this is overhead.
+
+One common mistake: Contractors enter subcontractor bills to "Subcontractor Expense" under Operating Expenses instead of "Subcontractor Payments" under Cost of Goods Sold. This destroys your gross margin calculation. Subcontractor costs on jobs are COGS, not operating expenses. Always use your COGS accounts for job-related costs.
+
+Another tip: Enter bills promptly. If you let bills pile up and enter them all at month-end, you're likely to make coding errors. Enter them as they arrive, when you still remember what job they were for.`,
+          keyPoints: [
+            "Every job-related bill needs: Account (COGS), Customer (Job), Class (if using)",
+            "Split bills that cover multiple jobs into separate line items",
+            "Leave Customer blank for overhead costs—that's how you separate them",
+            "Subcontractor costs are COGS, not Operating Expenses",
+            "Enter bills promptly while you remember the job context"
+          ]
+        },
+        {
+          id: "qb2-l3",
+          title: "Tracking Labor Costs to Jobs",
+          duration: "8 min",
+          transcript: `Labor is often the biggest cost on a job, yet it's the one most contractors track poorly in QuickBooks. Let's fix that.
+
+There are two ways to track labor to jobs in QuickBooks: through payroll or through time entries. The method you use depends on how you run payroll.
+
+If you use QuickBooks Payroll, labor tracking can be automatic. Here's how: When employees log time, they should select the job they worked on. If you're using QuickBooks Time (formerly TSheets), employees can pick the customer/job when they clock in. This time flows into payroll and automatically allocates labor costs to jobs.
+
+To set this up, go to Payroll Settings, then Preferences. Enable "Track billable time." Make sure "Time tracking by customer" is on. When you run payroll, QuickBooks will ask if you want to assign wages to customers. Yes, you do.
+
+But here's the catch: many contractors don't use QuickBooks Payroll, or they have employees work on multiple jobs per day and can't easily split time. In that case, you need a manual method.
+
+The manual method involves creating timesheet entries or journal entries. Each week, after payroll runs, enter a journal entry that allocates labor costs to jobs. Debit "Direct Labor" for each job's share of wages. Credit "Direct Labor" for the unallocated total. The net effect is zero, but now the labor is assigned to jobs.
+
+Let me give you a simpler approach many contractors use: the labor rate method. Calculate your average burdened labor rate—say, $35 per hour including wages, taxes, and benefits. Track hours by job on paper or in a simple spreadsheet. At month-end, enter a bill or journal entry: Direct Labor charged to "Smith Kitchen" at 120 hours × $35 = $4,200.
+
+This isn't perfect—it's an allocation, not actual payroll tracking. But it's good enough for job costing purposes and much simpler than trying to get payroll to split perfectly.
+
+The key point: However you do it, labor costs must get assigned to jobs. Labor is typically 30-50% of job costs. If you're not tracking it to jobs, your job costing is fiction.
+
+One more thing: Don't forget labor burden. The $25 you pay an employee isn't your cost—it's $32-38 after payroll taxes, workers comp, and benefits. When allocating labor to jobs, use the burdened rate. Otherwise, you'll think jobs are more profitable than they are.`,
+          keyPoints: [
+            "Use QuickBooks Payroll with time tracking for automatic labor allocation",
+            "Alternative: Labor rate method—calculate burdened rate × hours per job",
+            "Labor burden (taxes, workers comp, benefits) adds 30-50% to base wages",
+            "Always allocate labor to jobs—it's 30-50% of job costs",
+            "Track hours by job even if you do manual allocation monthly"
+          ]
+        },
+        {
+          id: "qb2-l4",
+          title: "Running Job Profitability Reports",
+          duration: "7 min",
+          transcript: `Everything we've set up leads to this: reports that show you exactly how profitable each job is. Let's run these reports and interpret them.
+
+The primary report is "Profit and Loss by Customer." Go to Reports, search for "Profit and Loss by Customer" or find it under Business Overview. Set your date range to include the jobs you want to analyze.
+
+This report shows a column for each customer and sub-customer. You'll see: Revenue (what you invoiced for each job), Cost of Goods Sold (materials, labor, subs you assigned to each job), and Gross Profit (revenue minus COGS).
+
+Here's how to read it. Look at the gross profit percentage for each job. Find a job with 40% gross margin—that's a winner. Find one with 15%—that's a problem. Look for patterns: are certain job types consistently lower margin?
+
+For more detail, run "Transaction List by Customer." This shows every transaction assigned to a job. If a job looks unprofitable, drill into this report to see why. Was it labor hours? Materials? A sub that cost more than expected?
+
+Another powerful report: "Unbilled Charges by Customer." This shows costs you've incurred on jobs that haven't been invoiced yet. If you have $20,000 in unbilled charges, that's $20,000 of your money tied up in work-in-progress. This is your WIP report.
+
+Here's a report most contractors never run but should: "Profitability by Job Type." If you've been using Classes, run "Profit and Loss by Class." This compares your different types of work. Maybe kitchens run at 38% gross margin while bathrooms only hit 25%. That's actionable information.
+
+Let me share how I recommend using these reports. Weekly, run a quick look at costs by job for active projects. You're checking: are we on track, or are costs piling up faster than expected? Monthly, run the full Profit and Loss by Customer. Review completed jobs—did they hit target margins? Quarterly, run Profit and Loss by Class. Are you focusing on the right types of work?
+
+The contractors who make the most money aren't necessarily the ones who do the most work. They're the ones who know which work makes money and focus on that. These reports tell you exactly that.`,
+          keyPoints: [
+            "Profit and Loss by Customer shows gross profit per job",
+            "Transaction List by Customer shows detailed costs for investigation",
+            "Unbilled Charges by Customer = your Work-in-Progress report",
+            "Profit and Loss by Class compares profitability across job types",
+            "Weekly: check active job costs. Monthly: review completed jobs. Quarterly: analyze by class"
+          ]
+        }
+      ],
+      knowledgeCheck: [
+        {
+          id: "qb2-q1",
+          question: "In QuickBooks, how do you structure jobs for job costing?",
+          options: ["Create each job as a separate Company", "Use the Projects feature only", "Create jobs as Sub-Customers under the client", "Create jobs as Vendors"],
+          correctAnswer: 2,
+          explanation: "Jobs are created as Sub-Customers under the parent Customer (the client). This allows all income and expenses for that job to be tracked together."
+        },
+        {
+          id: "qb2-q2",
+          question: "When entering a bill that covers materials for three different jobs, you should:",
+          options: ["Enter the total to one job and note the others in the memo", "Enter three separate line items assigned to each job", "Create three separate bills", "Use a journal entry instead"],
+          correctAnswer: 1,
+          explanation: "Enter separate line items for each job's portion. All lines can use the same COGS account but different Customers (jobs). This accurately allocates costs."
+        },
+        {
+          id: "qb2-q3",
+          question: "How should subcontractor costs for jobs be categorized?",
+          options: ["Operating Expenses - Subcontractor Expense", "Cost of Goods Sold - Subcontractor Payments", "Other Expenses - Contract Labor", "It doesn't matter as long as it's consistent"],
+          correctAnswer: 1,
+          explanation: "Subcontractor costs on jobs are direct job costs and must be in COGS. Putting them in Operating Expenses destroys your gross margin calculation."
+        },
+        {
+          id: "qb2-q4",
+          question: "When allocating labor costs to jobs, you should use:",
+          options: ["The employee's base hourly wage", "The burdened labor rate including taxes and benefits", "Just the federal minimum wage", "Whatever rate is in the contract"],
+          correctAnswer: 1,
+          explanation: "Use the burdened labor rate which includes wages plus payroll taxes, workers comp, and benefits. This is your true labor cost—30-50% higher than base wages."
+        },
+        {
+          id: "qb2-q5",
+          question: "The 'Unbilled Charges by Customer' report shows you:",
+          options: ["Invoices that customers haven't paid", "Work-in-Progress (costs incurred but not yet billed)", "Your total accounts receivable", "Deposits you've collected"],
+          correctAnswer: 1,
+          explanation: "Unbilled Charges shows costs you've incurred on jobs that haven't been invoiced yet. This is your Work-in-Progress—money tied up in active jobs."
+        }
+      ]
+    },
+    {
+      id: "qb-module-3",
+      number: 3,
+      title: "Reporting and Best Practices",
+      duration: "30 min",
+      description: "Set up the reports and routines that keep your QuickBooks data accurate and actionable.",
+      lessons: [
+        {
+          id: "qb3-l1",
+          title: "Customizing Your Dashboard and Reports",
+          duration: "7 min",
+          transcript: `QuickBooks has a lot of reports, but most of them aren't useful for contractors out of the box. Let's customize your dashboard and create the reports that actually help you run your business.
+
+First, let's fix your Dashboard. When you log in, QuickBooks shows you a default dashboard with graphs and numbers. Most of these are generic. Go to Dashboard, then look for "Customize" or the gear icon.
+
+I recommend showing these widgets: Profit and Loss summary (with comparison to prior period), Bank account balances (your actual cash position), Invoices (open invoices and their age), Bills (upcoming bills due), and if available, a Cash Flow snapshot.
+
+Remove widgets you don't need: If you don't do inventory, hide inventory reports. If you don't use QuickBooks for estimates, hide those. A clean dashboard shows you what matters without distraction.
+
+Now let's create your go-to reports and save them. The first essential report is your Contractor P&L. Go to Reports, find Profit and Loss. Customize it: Show comparison to prior period (either prior month or prior year). Group by month or quarter for trend analysis. If you use Classes, add "Show class columns."
+
+Save this customization: Click "Save customization." Name it something like "Contractor P&L - Monthly Compare." Now you can run this exact report anytime from your saved reports.
+
+Second report: Job Profitability. Find "Profit and Loss by Customer." Customize to show: Current period, gross profit percentage column. Filter to show only sub-customers (jobs, not parent customers). Save it as "Job Profitability Report."
+
+Third report: Aged Receivables. This one's critical for cash flow. Find "Accounts Receivable Aging Summary." Show aging buckets: Current, 1-30, 31-60, 61-90, Over 90. Save it as "AR Aging - Collections."
+
+Fourth report: Cash Flow projection. QuickBooks doesn't have a great built-in projection, but you can approximate it. Find "Statement of Cash Flows." This at least shows you how cash is moving. Save it as "Cash Movement Analysis."
+
+One power tip: Create a memorized report group. Go to Reports, find "Custom Reports," and create a group called "Weekly Review" or "Monthly Close." Add your key reports to this group. Now you can run the entire group with one click.
+
+Finally, schedule reports to email to yourself. Go to a saved report, click "Set email schedule." Have your key reports show up in your inbox every Monday morning. If you don't look at reports because you forget to run them, this forces the habit.`,
+          keyPoints: [
+            "Customize dashboard to show: P&L summary, bank balances, invoices, bills",
+            "Create and save custom reports: Contractor P&L, Job Profitability, AR Aging",
+            "Add comparison columns to P&L for trend analysis",
+            "Create a 'Weekly Review' report group for one-click reporting",
+            "Schedule key reports to email automatically"
+          ]
+        },
+        {
+          id: "qb3-l2",
+          title: "Weekly and Monthly Bookkeeping Routines",
+          duration: "8 min",
+          transcript: `Good QuickBooks data requires consistent routines. Here's the weekly and monthly process that keeps your books accurate and useful.
+
+Weekly routine—do this every Friday. First, reconcile your bank feeds. Log in, go to Banking, and review all the imported transactions. For each one: If it matches an existing bill or invoice, match it. If it's new, categorize it correctly and assign to a job if applicable. If you don't know what it is, don't guess—mark it for review.
+
+Second, enter any bills that came in this week that aren't in the system yet. Some vendors don't have electronic billing, so you get paper invoices. Enter them now while you remember what they were for.
+
+Third, send invoices for completed work. Don't wait until month-end to bill. If a job phase is done, invoice it this week. Cash flow depends on invoicing promptly.
+
+Fourth, review accounts receivable. Who owes you money? Who's past 30 days? Make collection calls while invoices are still fresh. A 35-day-old invoice is much easier to collect than a 65-day-old one.
+
+This weekly routine takes about 1-2 hours. It keeps your data current and prevents month-end chaos.
+
+Monthly routine—do this in the first few days of each month. First, complete bank reconciliation for the prior month. Go to Banking, then Reconcile. Match QuickBooks to your bank statement. Every dollar should match. If there's a difference, find it before you close the month.
+
+Second, reconcile credit cards the same way. Every credit card transaction should be categorized and reconciled.
+
+Third, review the P&L for the month. Does revenue look right? Do expenses seem reasonable? Look for anything that seems off—a negative number, an unusually large expense, a vendor you don't recognize.
+
+Fourth, review job profitability for any jobs that completed that month. Did they hit target margins? If not, investigate why and learn from it.
+
+Fifth, review accounts payable. What bills are due? Do you have cash to pay them? This is your cash flow check.
+
+Sixth, create any month-end entries. This might include: depreciation if you track it, labor allocations if you do them monthly, or any accruals your accountant requires.
+
+The monthly routine takes 2-4 hours but gives you a clean, accurate picture of your business. It's also when you catch errors before they compound.`,
+          keyPoints: [
+            "Weekly: Reconcile bank feeds, enter bills, send invoices, review AR",
+            "Monthly: Bank and credit card reconciliation, P&L review, job profitability check",
+            "Never guess on transactions—mark unknown items for review",
+            "Invoice promptly—don't wait until month-end to bill completed work",
+            "Weekly routine: 1-2 hours. Monthly routine: 2-4 hours"
+          ]
+        },
+        {
+          id: "qb3-l3",
+          title: "Common QuickBooks Mistakes to Avoid",
+          duration: "8 min",
+          transcript: `I've seen contractors make the same QuickBooks mistakes over and over. Let's go through the big ones so you can avoid them.
+
+Mistake number one: Using the wrong account type for COGS. I mentioned this before, but it's so common I'm repeating it. Subcontractor payments, job materials, and direct labor are Cost of Goods Sold, not Operating Expenses. If you code them as expenses, your gross margin calculation is wrong, and you have no visibility into job profitability. Check your chart of accounts—every direct job cost should be under COGS.
+
+Mistake number two: Not assigning costs to jobs. You enter a materials bill and forget to select the customer/job. That cost now shows up in your P&L but not in your job costing. Your overall numbers look right, but your job profitability is understated. This is why I recommend turning on the "Require customer on all expense transactions" rule for COGS accounts—it forces you to assign everything.
+
+Mistake number three: Mixing personal and business transactions. You buy lunch with the company credit card. You pay a personal bill from the business account. These transactions are not business expenses. If you include them in your books, your P&L is wrong. Either don't mix accounts at all—which is ideal—or religiously code personal transactions to an Owner Draw account.
+
+Mistake number four: Not reconciling regularly. If you only reconcile at year-end, you'll have 12 months of errors to untangle. I've seen contractors spend 40 hours cleaning up a year of unreconciled books. Do it monthly and it takes 30 minutes.
+
+Mistake number five: Creating too many accounts or classes. Some contractors want to track everything separately: different accounts for every material type, classes for every job AND every crew AND every customer type. This complexity makes data entry painful and leads to inconsistent coding. Keep it simple. You can always add detail later—but complexity at the start kills your system.
+
+Mistake number six: Entering deposits as income. When you collect a deposit from a customer, that's not revenue yet—you haven't done the work. It's a liability. Enter deposits as payments to a "Customer Deposits" liability account. When you invoice for the work, apply the deposit to that invoice. This keeps your revenue recognition accurate.
+
+Mistake number seven: Ignoring the books because "my accountant handles it." Your accountant sees your books once a year. You should be looking at them weekly. QuickBooks is not just a tax record—it's a management tool. The contractors who use it as a management tool make better decisions and more money.`,
+          keyPoints: [
+            "COGS vs Operating Expense: Job costs are COGS, not expenses",
+            "Always assign costs to jobs—unassigned costs break job costing",
+            "Never mix personal and business—or rigorously code personal as Owner Draw",
+            "Reconcile monthly, not annually—30 min/month vs 40 hours/year",
+            "Customer deposits are liabilities, not income, until work is done"
+          ]
+        },
+        {
+          id: "qb3-l4",
+          title: "Integrating QuickBooks with Your Workflow",
+          duration: "7 min",
+          transcript: `QuickBooks doesn't exist in isolation—it should integrate with your daily workflow and other tools. Let's talk about how to make that happen.
+
+First, invoicing workflow. The best practice is: Complete work, create invoice same day, send invoice same day. Don't batch invoices weekly or monthly—that delays cash flow by days or weeks. QuickBooks makes this easy: you can create and email invoices from your phone using the QuickBooks mobile app. Job's done at 4 PM? Invoice sent by 4:15 PM.
+
+For progress billing on larger jobs, set up recurring invoices or invoice templates. If your contract says you bill at 30%, 30%, 30%, 10%, create a template for each milestone. When you hit the milestone, you're ready to invoice immediately.
+
+Second, bill payment workflow. Review bills weekly during your Friday routine. Set up bill pay through QuickBooks or link it to your bank's bill pay. Schedule payments to optimize cash flow—pay on the due date, not before, unless you're getting an early payment discount.
+
+Third, time tracking integration. If you're not using QuickBooks Time, at minimum use a spreadsheet or time tracking app that your crews complete daily. Each day, they log: which job they worked on, how many hours. This data feeds your labor allocations.
+
+Fourth, integrate with your estimating process. Your QuickBooks data should inform your estimates. If you know your actual labor cost per square foot of drywall from past jobs (thanks to job costing), you can estimate future jobs accurately. Pull job profitability reports before building estimates.
+
+Fifth, consider add-ons and integrations. QuickBooks connects to many contractor tools: Receipt capture apps like HubDoc or Dext that scan receipts and enter them automatically. Estimating software that syncs jobs to QuickBooks. Time tracking apps beyond QuickBooks Time. Payment processing that deposits directly to QuickBooks.
+
+The key is to reduce friction. The harder it is to enter data correctly, the more likely it gets entered wrong. Every integration that reduces steps improves data quality.
+
+Finally, train your team. If you have office staff, they need to understand the chart of accounts, job structure, and coding rules. If they enter data wrong, your reports are useless. Spend time training them on the "why" behind the system, not just the mechanics.
+
+That completes the QuickBooks Setup for Contractors course. Take your knowledge check, and if you pass, you'll earn your certificate. You now have a solid foundation for running QuickBooks in a way that actually helps you manage your business.`,
+          keyPoints: [
+            "Invoice same-day—don't batch and delay cash flow",
+            "Use QuickBooks mobile for on-site invoicing",
+            "Pay bills on due date unless early payment discount is offered",
+            "Let job costing data inform your estimating process",
+            "Consider integrations: receipt capture, time tracking, estimating software"
+          ]
+        }
+      ],
+      knowledgeCheck: [
+        {
+          id: "qb3-q1",
+          question: "How often should you reconcile your QuickBooks bank account?",
+          options: ["Annually at tax time", "Quarterly", "Monthly", "Only when there's a problem"],
+          correctAnswer: 2,
+          explanation: "Reconcile monthly. Waiting longer creates compounding errors that take hours to untangle. Monthly reconciliation takes about 30 minutes."
+        },
+        {
+          id: "qb3-q2",
+          question: "When should you create and send invoices for completed work?",
+          options: ["At month-end to batch them together", "Weekly on Fridays", "Same day the work is completed", "When you need cash flow"],
+          correctAnswer: 2,
+          explanation: "Invoice same-day. Every day you delay invoicing delays your cash collection. Use the QuickBooks mobile app to invoice from the job site."
+        },
+        {
+          id: "qb3-q3",
+          question: "How should customer deposits be recorded in QuickBooks?",
+          options: ["As revenue in a COGS account", "As a payment to a Customer Deposits liability account", "As income in a revenue account", "As a credit to accounts receivable"],
+          correctAnswer: 1,
+          explanation: "Deposits are liabilities until you do the work. Record them to a Customer Deposits liability account, then apply to invoices when work is complete."
+        },
+        {
+          id: "qb3-q4",
+          question: "What should you do if you don't recognize a bank transaction in QuickBooks?",
+          options: ["Delete it", "Guess and categorize it anyway", "Mark it for review and investigate later", "Ask your accountant at year-end"],
+          correctAnswer: 2,
+          explanation: "Never guess on transactions—this leads to inaccurate data. Mark unknown items for review and investigate while the transaction is still recent."
+        },
+        {
+          id: "qb3-q5",
+          question: "How often should the weekly bookkeeping routine be performed?",
+          options: ["Monthly is fine", "Every Friday", "Only when you have time", "Every day"],
+          correctAnswer: 1,
+          explanation: "Do your weekly routine every Friday: reconcile bank feeds, enter bills, send invoices, review AR. This takes 1-2 hours and prevents month-end chaos."
+        }
+      ]
+    }
+  ]
+};
+
+// Cash Flow Mastery Course
+export const cashFlowMastery: Course = {
+  id: "cash-flow-mastery",
+  title: "Cash Flow Mastery",
+  slug: "cash-flow-mastery",
+  description: "Take control of your construction company's cash flow: forecasting, collections, payment optimization, and surviving the growth paradox.",
+  duration: "2 hours",
+  level: "Intermediate",
+  passingScore: 80,
+  modules: [
+    {
+      id: "cf-module-1",
+      number: 1,
+      title: "Understanding Contractor Cash Flow",
+      duration: "30 min",
+      description: "Learn why cash flow is different for contractors and why profitable companies fail.",
+      lessons: [
+        {
+          id: "cf1-l1",
+          title: "Why Profitable Contractors Go Broke",
+          duration: "7 min",
+          transcript: `Welcome to Cash Flow Mastery. This course is about the single biggest killer of contracting businesses: running out of cash. And here's the uncomfortable truth—you can be profitable and still go broke.
+
+Let me share a story I've seen too many times. A contractor has a great year. Revenue is up 30%. The P&L shows strong profits. They're busier than ever. Then, one day, they can't make payroll. Within weeks, they're out of business. What happened?
+
+Cash flow happened. Or rather, the failure to manage it.
+
+Here's the fundamental concept: Profit is an accounting measure. Cash is what's in your bank account. They're not the same thing, and they don't move at the same time.
+
+For contractors, there's a structural gap between spending money and collecting money. You sign a job in January. You buy materials in February. You pay your crew in February, March, and April. You finish and invoice in April. You collect payment in June—maybe July if the customer is slow.
+
+From February to June, you're spending money you haven't collected. Where does that money come from? Your working capital. Your savings. Your credit line. Your other jobs.
+
+Now imagine you're growing. You signed three big jobs instead of one. You're buying three times the materials. Paying three times the labor. But your collections haven't caught up yet—you're still waiting on payments from jobs that aren't even done.
+
+This is the growth paradox: the faster you grow, the more cash you need, even if you're profitable. Growth eats cash.
+
+Eighty-two percent of contractor failures are cash flow failures. Not lack of work. Not poor craftsmanship. Not low prices. Cash flow. They simply ran out of money before the money came in.
+
+This course will teach you to see cash flow problems before they become fatal. You'll learn to forecast, to accelerate collections, to slow payments strategically, and to build the buffer that lets you survive inevitable bumps. Let's start with understanding the contractor cash cycle.`,
+          keyPoints: [
+            "Profit is accounting; cash is what's in your bank—they're not the same",
+            "Contractors spend money months before collecting payment",
+            "The growth paradox: faster growth requires more cash, not less",
+            "82% of contractor failures are cash flow failures",
+            "Cash flow problems are survivable if you see them coming"
+          ]
+        },
+        {
+          id: "cf1-l2",
+          title: "The Contractor Cash Cycle",
+          duration: "8 min",
+          transcript: `Every construction project follows a cash cycle. Understanding this cycle is the first step to controlling it.
+
+The cycle has five phases. Phase one: You land the job. Hopefully, you collect a deposit—more on that later. Phase two: You mobilize. You buy materials, schedule crews, maybe rent equipment. Cash goes out. Phase three: You work. You pay your crew weekly. Subs invoice you. Cash keeps going out. Phase four: You invoice. You've finished the work (or a milestone) and send a bill. Now you wait. Phase five: You collect. The customer pays the invoice. Cash finally comes in.
+
+Let's map this to a real timeline. Say you sign a $100,000 kitchen remodel on January 15. You collect a 10% deposit: $10,000 comes in. February 1, you order cabinets and materials—$25,000 goes out. February through April, you pay your crew—$30,000 goes out over those weeks. You pay your tile sub—$8,000. Other costs bring your total spend to $70,000.
+
+April 15, the job is done. You invoice the remaining $90,000. Payment terms are net 30, so you expect payment around May 15. But the customer takes their time, submits their punch list, has a few questions. You actually collect on June 1.
+
+From February 1 to June 1, you were negative on this job. You spent $60,000 out of pocket ($70,000 minus the $10,000 deposit) and waited four months to get it back—plus your profit.
+
+Now calculate your float requirement. At peak, around April 15, you had $60,000 of your money in this job. That's cash that can't be used for anything else. If you don't have $60,000 available, you can't do this job.
+
+What if you have three jobs like this running simultaneously? You might need $150,000 or more in float. That's your working capital requirement.
+
+The cash cycle creates three numbers you must know. First, your average float per job: how much of your cash is tied up in a typical job at peak? Second, your average cycle time: from first dollar out to last dollar in, how many days? Third, your concurrent job capacity: given your working capital, how many jobs can you float at once?
+
+If you know these numbers, you can plan. If you don't, you're gambling. Next, let's talk about working capital and how to calculate what you need.`,
+          keyPoints: [
+            "Five phases: Land job, Mobilize, Work, Invoice, Collect",
+            "Cash goes out for weeks/months before coming back in",
+            "Calculate 'float per job'—your cash tied up at peak",
+            "Calculate 'cycle time'—days from first spend to final collection",
+            "Your working capital determines how many jobs you can run concurrently"
+          ]
+        },
+        {
+          id: "cf1-l3",
+          title: "Working Capital Requirements",
+          duration: "8 min",
+          transcript: `Working capital is your financial cushion—the money available to fund daily operations. For contractors, it's not optional; it's survival.
+
+The formula is simple: Working Capital equals Current Assets minus Current Liabilities. Current Assets are things that can be converted to cash within a year: cash in the bank, accounts receivable, and work-in-progress. Current Liabilities are things due within a year: accounts payable, credit card balances, and the current portion of loans.
+
+But knowing the formula isn't enough. You need to know how much working capital you need.
+
+Here's the contractor-specific calculation. Start with your expected annual revenue. Let's say $1 million. Calculate your average cost ratio—the percentage of revenue that goes to direct costs. For most contractors, it's 60-70%. We'll use 65%, so direct costs are $650,000 per year.
+
+Now estimate your average cycle time. From first spend to final collection, how many days? For residential, it might be 60-90 days. For commercial with retainage, it could be 120 days or more. Let's use 75 days.
+
+Your working capital requirement is: Direct costs times cycle time divided by 365. That's $650,000 times 75 divided by 365, which equals roughly $134,000.
+
+To run a million-dollar contracting business with a 75-day cash cycle, you need about $134,000 in working capital. If you have less, you'll run into cash crunches during busy periods.
+
+But wait—this assumes everything goes smoothly. What if a customer is slow to pay? What if a job runs over? What if you land a big opportunity? You need a buffer.
+
+The rule of thumb is: Take your calculated requirement and add 25% for safety. Our contractor needs $134,000 plus 25%, or about $168,000, to run their business safely.
+
+Now here's the reality check. How much working capital do you actually have? Do the math: add up your current assets, subtract current liabilities. Is the number above your requirement? If not, you're undercapitalized, and every growth push increases your risk.
+
+What if you're short? You have options. Build reserves by reinvesting profit instead of taking distributions. Secure a credit line—this adds to your available current assets. Reduce cycle time through faster billing and collection. Increase deposits to reduce how much of your money is in each job.
+
+The contractors who survive long-term are the ones who build and maintain adequate working capital. It's not exciting. It's not visible. But it's the foundation of a stable business.`,
+          keyPoints: [
+            "Working Capital = Current Assets − Current Liabilities",
+            "Requirement formula: (Annual Direct Costs × Cycle Time) ÷ 365",
+            "Add 25% buffer for safety margin",
+            "A $1M contractor with 75-day cycle needs ~$168K working capital",
+            "Options if short: Build reserves, get credit line, reduce cycle time, increase deposits"
+          ]
+        },
+        {
+          id: "cf1-l4",
+          title: "Cash Flow vs Profit: Seeing Both Pictures",
+          duration: "7 min",
+          transcript: `Too many contractors look at their P&L and think they understand their financial picture. They don't. The P&L tells you one thing—your profit. The Cash Flow Statement tells you something different—your cash.
+
+Let's see this clearly with an example. Your P&L shows: Revenue $200,000, Cost of Goods Sold $130,000, Gross Profit $70,000, Overhead $45,000, Net Profit $25,000.
+
+Looks great, right? $25,000 profit. But your bank account is down $10,000 from last month. How is that possible?
+
+The Cash Flow Statement explains it. Start with Net Income: $25,000. Adjust for receivables: Accounts Receivable increased by $35,000, meaning you earned revenue you haven't collected. That's negative $35,000 to cash. Adjust for payables: Accounts Payable decreased by $5,000, meaning you paid down supplier balances. That's negative $5,000 to cash. Add depreciation: $5,000 (this was an expense on the P&L but not a cash outflow).
+
+Cash from operations: $25,000 minus $35,000 minus $5,000 plus $5,000 equals negative $10,000.
+
+You made $25,000 profit but your operating cash flow was negative $10,000. The profit is stuck in receivables—you haven't collected it yet.
+
+This is why you need to look at both statements. The P&L tells you: Am I pricing correctly? Are my margins healthy? Am I profitable? The Cash Flow Statement tells you: Is profit becoming cash? Where is cash stuck? Will I have cash to operate?
+
+For contractors, the cash flow statement is arguably more important in the short term. You can survive a quarter of low profits if you have cash. You cannot survive a quarter with no cash, even if you're profitable.
+
+Build a habit of reviewing both monthly. Ask these questions: What was my net income? What was my change in cash? If they're very different, why? Where did my profit go—receivables, inventory, equipment?
+
+You can create a simple cash flow review without a formal statement. Just look at: Bank balance at start of month, Bank balance at end of month, the difference. Then reconcile that difference to your profit by adjusting for major changes in receivables and payables.
+
+If you track both profit and cash, you'll see problems coming with time to react. If you only track profit, you'll be blindsided. The next module teaches you how to forecast cash flow so you're never surprised.`,
+          keyPoints: [
+            "P&L shows profit; Cash Flow Statement shows actual cash movement",
+            "Profit gets 'stuck' in receivables, inventory, and equipment purchases",
+            "You can be profitable and cash-negative simultaneously",
+            "Review both statements monthly: What was net income? What was cash change?",
+            "Short-term, cash matters more than profit—you can't operate without cash"
+          ]
+        }
+      ],
+      knowledgeCheck: [
+        {
+          id: "cf1-q1",
+          question: "According to industry data, what percentage of contractor failures are due to cash flow problems?",
+          options: ["25%", "50%", "65%", "82%"],
+          correctAnswer: 3,
+          explanation: "82% of contractor failures are attributed to cash flow problems—not lack of work, poor quality, or low prices. Cash flow management is critical to survival."
+        },
+        {
+          id: "cf1-q2",
+          question: "The 'growth paradox' for contractors means:",
+          options: ["Growing too fast always leads to failure", "Faster growth requires MORE cash, not less", "You should never grow your business", "Growth automatically improves cash flow"],
+          correctAnswer: 1,
+          explanation: "The growth paradox means faster growth requires more cash. You're paying for more materials, labor, and overhead while waiting longer to collect on a larger revenue base."
+        },
+        {
+          id: "cf1-q3",
+          question: "A contractor has $1M annual revenue, 65% direct costs, and 90-day cycle time. What's their approximate working capital requirement?",
+          options: ["$65,000", "$120,000", "$160,000", "$200,000"],
+          correctAnswer: 2,
+          explanation: "Working capital = (Direct Costs × Cycle Time) ÷ 365 = ($650,000 × 90) ÷ 365 = ~$160,000. Add 25% buffer for the recommended amount."
+        },
+        {
+          id: "cf1-q4",
+          question: "If your P&L shows $30,000 profit but your receivables increased by $40,000, your cash flow from operations is approximately:",
+          options: ["+$70,000", "+$30,000", "-$10,000", "-$40,000"],
+          correctAnswer: 2,
+          explanation: "Increased receivables mean you earned revenue but didn't collect it. $30,000 profit − $40,000 tied up in receivables = −$10,000 operating cash flow."
+        },
+        {
+          id: "cf1-q5",
+          question: "What does 'float per job' refer to?",
+          options: ["The profit margin on each job", "The amount of your cash tied up in a job at peak", "The time between signing and starting", "The customer's deposit amount"],
+          correctAnswer: 1,
+          explanation: "Float per job is how much of YOUR cash is tied up in a job at its peak point—after you've spent on materials and labor but before collecting final payment."
+        }
+      ]
+    },
+    {
+      id: "cf-module-2",
+      number: 2,
+      title: "Cash Flow Forecasting",
+      duration: "30 min",
+      description: "Build a 13-week cash flow forecast that shows you problems before they happen.",
+      lessons: [
+        {
+          id: "cf2-l1",
+          title: "Why 13-Week Forecasting Works",
+          duration: "7 min",
+          transcript: `Cash flow forecasting sounds complicated, but it doesn't have to be. The 13-week rolling forecast is a simple, powerful tool that every contractor can use. Let me explain why it works.
+
+Thirteen weeks is the sweet spot for several reasons. It's far enough ahead to see problems coming and take action. It's close enough that your estimates are reasonably accurate. And it aligns with a fiscal quarter, which is a natural business cycle.
+
+If you only look one week ahead, you have no time to fix problems. By the time you see a cash shortage, it's too late. If you look six months ahead, your forecast becomes fiction—too many variables change. Thirteen weeks is actionable foresight.
+
+The basic structure of a 13-week forecast is simple. You create a spreadsheet with columns for each of the next 13 weeks. Row one is your starting cash balance. Below that, you list all expected cash inflows: customer payments, deposits, other income. Below that, you list all expected cash outflows: payroll, materials, subcontractors, overhead expenses, loan payments, equipment purchases, tax payments, owner draws. At the bottom, you calculate ending cash for each week.
+
+Each week becomes the starting point for the next week. Week 1 ending cash is Week 2 starting cash. This chain shows you exactly when cash is expected to dip and by how much.
+
+Here's what this looks like in practice. Week 1 starting cash: $85,000. Expected inflows: $45,000 from customer payments. Expected outflows: $32,000 payroll, $15,000 materials, $8,000 overhead. Net change: negative $10,000. Ending cash: $75,000.
+
+Week 2 starting cash: $75,000. And so on.
+
+As you fill out the forecast, you might see Week 7 ending cash projected at negative $12,000. That's a problem—but you're seeing it six weeks in advance. You have time to accelerate a collection, delay a purchase, draw on a credit line, or adjust your plans.
+
+That's the power: problems visible in advance. A cash crisis that's visible six weeks out is a planning problem. A cash crisis that hits you this Friday is an emergency. The 13-week forecast turns emergencies into planning problems.
+
+In the next lesson, I'll walk you through building your first forecast step by step.`,
+          keyPoints: [
+            "13 weeks = far enough to see problems, close enough to be accurate",
+            "Structure: Starting cash → + Inflows → − Outflows → Ending cash",
+            "Each week's ending cash becomes next week's starting cash",
+            "Forecast shows WHEN cash dips and by how much",
+            "Problems visible 6 weeks out are manageable; Friday surprises are emergencies"
+          ]
+        },
+        {
+          id: "cf2-l2",
+          title: "Building Your First 13-Week Forecast",
+          duration: "8 min",
+          transcript: `Let's build a 13-week cash flow forecast together. Open a spreadsheet—Excel, Google Sheets, whatever you're comfortable with.
+
+Create your column headers. Column A will be row labels. Columns B through N will be Weeks 1 through 13. Put the date of the Monday that starts each week in the header.
+
+Now set up your rows. Start with "Beginning Cash Balance." This is your actual bank balance at the start of Week 1.
+
+Next section: Cash Inflows. Create rows for: Customer Collections (payments on invoices), New Deposits Received (deposits on new jobs), Other Income (interest, rebates, anything else). Add a row for "Total Inflows" that sums these.
+
+Next section: Cash Outflows. Create rows for: Payroll (including taxes—when do they actually hit your bank?), Materials Payments (when are supplier bills due?), Subcontractor Payments, Equipment and Rentals, Overhead (rent, utilities, insurance—when are they due?), Loan Payments (exact due dates), Credit Card Payments (statement due dates), Tax Payments (quarterly estimates), Owner Draws (if you take regular distributions). Add a row for "Total Outflows."
+
+Then add: "Net Cash Flow" (Total Inflows minus Total Outflows) and "Ending Cash Balance" (Beginning Cash plus Net Cash Flow).
+
+Now let's fill it in. Week 1 Beginning Cash: look at your bank account right now. Let's say $72,000. For Customer Collections, look at your open invoices. What's due this week? What do you realistically expect to collect? Be conservative—if a customer is historically slow, don't assume they'll pay on time. Let's say $38,000.
+
+Deposits: Are any new jobs starting that have deposit payments? Let's say $5,000.
+
+Total Inflows: $43,000.
+
+Now outflows. Payroll: What's your weekly payroll? Let's say $18,000. Materials: What bills are due this week? $12,000. Subcontractors: $8,000. Overhead due this week: $4,000. No loan payments this week.
+
+Total Outflows: $42,000.
+
+Net Cash Flow: $43,000 minus $42,000 equals positive $1,000.
+
+Ending Cash: $72,000 plus $1,000 equals $73,000.
+
+Week 2 Beginning Cash is $73,000. Repeat the process.
+
+The key is to be specific about timing. When does payroll actually hit? What day do supplier bills auto-pay? When are quarterly taxes due? The forecast only works if you're specific about WHEN cash moves.
+
+Fill out all 13 weeks. Yes, the later weeks will be estimates. That's fine. As each week passes, you update the forecast with actual numbers and roll forward another week. It's a living document, not a one-time exercise.`,
+          keyPoints: [
+            "Columns = weeks (13 total); Rows = cash categories",
+            "Inflows: Collections, Deposits, Other Income",
+            "Outflows: Payroll, Materials, Subs, Overhead, Loans, Taxes, Draws",
+            "Be specific about WHEN cash moves, not just amounts",
+            "Update weekly with actuals and roll forward—it's a living document"
+          ]
+        },
+        {
+          id: "cf2-l3",
+          title: "Forecasting Inflows Accurately",
+          duration: "8 min",
+          transcript: `The accuracy of your cash forecast depends heavily on how well you predict inflows. Most contractors are too optimistic. Let's talk about how to forecast collections realistically.
+
+First, know your customers' payment patterns. Some customers pay in 15 days like clockwork. Some take 60 days no matter what the terms say. Some pay only after multiple follow-ups. Track your actual collection data by customer. When you forecast their payments, use their actual pattern, not your invoice terms.
+
+Second, don't count on invoices that haven't been sent. If a job is almost done and you plan to invoice next week, put that collection in Week 5 or 6 (assuming 30-day terms), not Week 2. Be realistic about the sequence: finish work, invoice, customer processes it, payment arrives.
+
+Third, apply an uncertainty discount. If you have $100,000 in invoices that are due over the next 4 weeks, don't forecast $100,000 in collections. Assume 85-90% will come in on time. Some customers will be late. Some invoices will have disputes. Some will slip.
+
+Let me show you a collection forecasting method. Start with your Accounts Receivable aging report. Category one: Invoices due this week—forecast 95% collection, because these are the ones customers have had time to process. Category two: Invoices due in 1-2 weeks—forecast 85% of on-time payment. Category three: Invoices due in 3-4 weeks—forecast 75% on-time, because further out is less certain. Category four: Invoices not yet sent—forecast collection based on when you'll realistically invoice plus the customer's typical payment cycle.
+
+Another factor: seasonality and cycles. Do your customers have payroll cycles that affect when they cut checks? Do they pay faster at year-end to use budget? Slower in summer when decision-makers vacation? These patterns affect your forecast.
+
+Deposits are usually more reliable than collections because they happen before work starts. When you sign a contract with a deposit, you can forecast that deposit with high confidence for the specific week you expect the signed contract back.
+
+Finally, have a contingency plan. In your forecast, create a row for "Contingent Inflows"—money you could pull in if you needed to. This might be: expediting collection calls on aged receivables, offering a small discount for early payment, or drawing on your credit line. You're not forecasting these as certain inflows, but knowing you have levers to pull if Week 7 looks tight.`,
+          keyPoints: [
+            "Use actual customer payment patterns, not invoice terms",
+            "Don't count invoices that haven't been sent yet",
+            "Apply an uncertainty discount: 85-90% of invoiced amounts, not 100%",
+            "Consider customer payment cycles and seasonal patterns",
+            "Know your contingent inflows—levers you can pull if cash gets tight"
+          ]
+        },
+        {
+          id: "cf2-l4",
+          title: "What to Do When the Forecast Shows Trouble",
+          duration: "7 min",
+          transcript: `The whole point of forecasting is to see trouble before it arrives. So what do you do when your forecast shows a cash shortage in Week 7?
+
+First, don't panic. You have six weeks to fix it. That's the gift of forecasting. Take a breath and work the problem systematically.
+
+Start with the inflow side. Can you accelerate collections? Call customers with outstanding invoices. Send reminder emails. Offer a 2% discount for payment within 10 days. Move some of that Week 8 expected cash to Week 6.
+
+Can you collect deposits on new work? If you're signing new jobs, get larger deposits. Instead of 10%, ask for 25% or 30%. Frame it as protecting both parties and ensuring material availability.
+
+Can you invoice sooner? If you're waiting to invoice until a job is 100% complete, can you do progress billing? Bill for the 75% that's done now and bill the rest later.
+
+Now the outflow side. Can you delay payments? If a supplier bill is due in Week 7, can you push it to Week 9? Many suppliers will grant payment term extensions if you ask proactively and have good history. Call them before the bill is due, not after.
+
+Can you defer purchases? If you planned to buy equipment in Week 6, can it wait until Week 9 when cash is stronger? Timing purchases to cash flow is smart management.
+
+Can you reduce discretionary spending? Owner draws, bonus payments, nice-to-have purchases—can these wait a few weeks?
+
+What about your credit line? If you have a line of credit, now's the time to draw on it. That's what it's for—short-term working capital gaps. Don't wait until you're desperate; draw when you see the gap coming.
+
+If the gap is larger than these measures can cover, you have a bigger issue. The forecast is telling you that your business model has a cash problem—maybe you're growing too fast, or your payment terms are too generous, or your margins are too thin. These are strategic problems that take longer to fix.
+
+The weekly discipline is: Update your forecast every Monday. Compare last week's actual to the forecast—where were you wrong? Roll the forecast forward another week. Check if any weeks now show trouble. Take action early.
+
+This discipline transforms cash management from reactive to proactive. Problems become visible with time to solve them. That's Cash Flow Mastery.`,
+          keyPoints: [
+            "Seeing trouble 6 weeks out gives you time to fix it",
+            "Inflow levers: Accelerate collections, increase deposits, invoice earlier",
+            "Outflow levers: Delay payments, defer purchases, reduce discretionary spend",
+            "Use credit lines proactively when you see gaps—don't wait until desperate",
+            "Update forecast weekly: compare actual vs forecast, roll forward, check for trouble"
+          ]
+        }
+      ],
+      knowledgeCheck: [
+        {
+          id: "cf2-q1",
+          question: "Why is 13 weeks the recommended forecast horizon for contractors?",
+          options: ["It matches the fiscal year", "It's far enough to see problems, close enough to be accurate", "It's the IRS requirement", "It matches payroll cycles"],
+          correctAnswer: 1,
+          explanation: "13 weeks is the sweet spot: far enough ahead to see problems and take action (unlike 1 week), but close enough that estimates are reasonably accurate (unlike 6 months)."
+        },
+        {
+          id: "cf2-q2",
+          question: "When forecasting customer collections, you should:",
+          options: ["Assume 100% will pay on the invoice due date", "Use actual customer payment patterns, not just invoice terms", "Only count payments that have already been received", "Double the expected amount to be safe"],
+          correctAnswer: 1,
+          explanation: "Use actual customer payment patterns. Some customers always pay in 15 days; others always take 60. Base your forecast on reality, not optimism."
+        },
+        {
+          id: "cf2-q3",
+          question: "What's an appropriate 'uncertainty discount' to apply to forecasted collections?",
+          options: ["Expect 100% of invoiced amounts", "Expect 85-90% of invoiced amounts", "Expect 50% of invoiced amounts", "Expect 25% of invoiced amounts"],
+          correctAnswer: 1,
+          explanation: "Expect 85-90% of invoiced amounts to collect on time. Some customers will be late, some invoices will have disputes. Being conservative prevents surprises."
+        },
+        {
+          id: "cf2-q4",
+          question: "Your forecast shows a $15,000 cash shortage in Week 8. What should you do first?",
+          options: ["Panic and stop taking new work", "Wait until Week 7 to see if it resolves itself", "Work systematically through inflow and outflow levers", "Immediately close the business"],
+          correctAnswer: 2,
+          explanation: "You have time—that's the point of forecasting. Work systematically: Can you accelerate collections? Delay payments? Get larger deposits? You have 7 weeks to solve a $15,000 gap."
+        },
+        {
+          id: "cf2-q5",
+          question: "How often should you update your 13-week cash flow forecast?",
+          options: ["Monthly", "Weekly", "Daily", "Annually"],
+          correctAnswer: 1,
+          explanation: "Update weekly. Compare last week's actual vs forecast, roll the forecast forward another week, and check for any new trouble spots. This keeps the forecast accurate and actionable."
+        }
+      ]
+    },
+    {
+      id: "cf-module-3",
+      number: 3,
+      title: "Accelerating Collections",
+      duration: "30 min",
+      description: "Get paid faster with proven strategies for invoicing, payment terms, and collections.",
+      lessons: [
+        {
+          id: "cf3-l1",
+          title: "Optimizing Your Payment Terms",
+          duration: "7 min",
+          transcript: `Your payment terms set the baseline for how long you'll wait to get paid. Let's optimize them.
+
+Most contractors default to "Net 30"—payment due 30 days after invoice. But where did that come from? It's just tradition. There's nothing magical about 30 days. You can set whatever terms serve your business.
+
+Consider this: If you change from Net 30 to Net 15, you get paid 15 days faster on every invoice. For a contractor doing $1 million annually, that's roughly $40,000 in cash that moves from receivables to your bank account. That's $40,000 more in working capital—from changing a few words on your invoices.
+
+Here's how to approach payment terms. For residential customers, shorter terms are expected. Net 15 or even "Due upon receipt" is reasonable. Homeowners aren't running complex accounting departments. They can pay quickly if you make it easy.
+
+For commercial customers, you may have less flexibility—they have their own payment processes. But you can still negotiate. Don't just accept "Net 60" because that's what they offer. Counter with Net 30. Ask what it would take to get Net 15.
+
+Progress payments are essential for larger jobs. Don't wait until a job is 100% complete to invoice. Break it into milestones: 30% deposit at signing, 30% at rough completion, 30% at substantial completion, 10% at final walk-through. This keeps you funded throughout the project.
+
+Deposits are your best friend. A 25-30% deposit at signing means you start every job with a positive cash position. You've collected money before spending anything. This is powerful.
+
+For service and repair work, collect at completion. You're there, the work is done, collect before you leave. Many contractors lose days or weeks by invoicing service work instead of collecting on the spot.
+
+One more thing: state your terms clearly and consistently. If your invoice says "Net 15," your contract should say Net 15. Your verbal agreements should match. When terms are inconsistent, customers take the longest option.
+
+The key insight: Payment terms are negotiable at the start of a relationship. They're very hard to change later. Set them right from the beginning.`,
+          keyPoints: [
+            "Net 30 is tradition, not law—you can set shorter terms",
+            "Changing Net 30 to Net 15 accelerates ~$40K cash on $1M revenue",
+            "Residential can be Net 15 or 'Due upon receipt'",
+            "Progress payments on larger jobs: 30%/30%/30%/10% is a good structure",
+            "Collect service/repair work on site—don't invoice and wait"
+          ]
+        },
+        {
+          id: "cf3-l2",
+          title: "Invoicing for Speed",
+          duration: "8 min",
+          transcript: `How and when you invoice affects how fast you get paid. Let's optimize your invoicing process.
+
+Rule one: Invoice immediately. The moment work is complete—or a milestone is reached—invoice that day. Not tomorrow. Not Friday. Today. Every day you delay invoicing is a day added to your collection cycle. If you invoice a week late, you've already added 7 days to when you'll get paid.
+
+Use mobile invoicing. QuickBooks, Square, FreshBooks—they all have mobile apps. Create and send invoices from the job site. Job's done at 2 PM? Invoice sent by 2:15 PM. No excuses about waiting until you get back to the office.
+
+Rule two: Make invoices crystal clear. Confusion delays payment. Your invoice should include: Clear description of work completed (not "Services rendered" but "Kitchen remodel - Phase 2: Plumbing rough-in and electrical complete"). Reference to contract or proposal number. The amount due and what it covers. Due date in bold, prominent position. Payment methods accepted and instructions.
+
+Rule three: Remove friction from payment. The easier you make it to pay, the faster people pay. Accept multiple payment methods: checks, credit cards, ACH bank transfers. Include a "Pay Now" button if your invoicing software supports it. Provide your bank details for ACH transfer. Accept credit cards even though there's a fee—a 3% fee is worth it if it gets you paid 20 days faster.
+
+Rule four: Send invoices to the right person. In commercial work, sending an invoice to your project contact doesn't mean it gets to accounts payable. Get the AP contact and process upfront. Know what approvals are needed. Send invoices to both your contact and AP. Follow their process.
+
+Rule five: Confirm receipt. Email invoices and request a read receipt. Or call the day after sending: "Hi, just confirming you received the invoice I sent yesterday for the Johnson project. Is there anything you need from me to process it?" This does two things: confirms they have it and surfaces any issues immediately.
+
+Many contractors are uncomfortable asking for money. Get over it. You did the work. You deserve to be paid. Professional follow-up isn't pushy; it's competent.`,
+          keyPoints: [
+            "Invoice the same day work is complete—every day of delay extends collection",
+            "Use mobile invoicing from the job site",
+            "Make invoices crystal clear: description, reference, due date, payment instructions",
+            "Accept multiple payment methods including credit cards despite fees",
+            "Confirm invoice receipt—call or email the day after sending"
+          ]
+        },
+        {
+          id: "cf3-l3",
+          title: "The Collection Process",
+          duration: "8 min",
+          transcript: `Even with great terms and fast invoicing, some customers will pay late. A systematic collection process ensures you get paid without destroying relationships.
+
+First, let's set the framework. Collection isn't about being aggressive. It's about being professional and consistent. Customers who know you follow up systematically pay faster than customers who know you let things slide.
+
+Here's a proven collection timeline. Before the due date, send a reminder. Seven days before payment is due, send a friendly reminder: "Your invoice for the Smith Kitchen project is due on April 15. Please let me know if you have any questions." This prevents "I forgot" delays.
+
+On the due date, if not paid, send an email: "Invoice #1234 was due today. Please remit payment at your earliest convenience." Keep it factual, not emotional.
+
+Three days past due: A phone call. "Hi, I'm following up on invoice #1234 that was due a few days ago. Is there an issue we can help resolve, or can I get an expected payment date?" Often there's a simple explanation—they need a receipt, or they lost the invoice.
+
+Seven days past due: Another phone call plus an email. "I haven't received payment on invoice #1234. Please let me know when I can expect it." Ask for a specific date.
+
+Fourteen days past due: Formal written notice. "Invoice #1234 is now two weeks overdue. Payment is required within 7 days. If there are issues, please contact me immediately."
+
+Thirty days past due: Final notice. "This is a final notice for invoice #1234. If payment isn't received within 5 days, we'll need to evaluate our options for recovery." This might mean collections, liens, legal action—whatever's appropriate.
+
+Throughout this process, document everything. Log your calls, save your emails, note any promises made. If it ever goes to collections or court, you need this documentation.
+
+Two key principles: Be consistent—apply the same process to everyone, every time. And be professional—never get emotional, never make threats you can't follow through on, never damage the relationship unnecessarily.
+
+Most customers aren't trying to stiff you. They're busy, disorganized, or have a legitimate issue. Your job is to be professionally persistent until the issue is resolved and you're paid.`,
+          keyPoints: [
+            "Collection is about being professional and consistent, not aggressive",
+            "Timeline: Reminder before due, follow-up day of, call at 3 days, escalate weekly",
+            "Always ask for a specific payment date when following up",
+            "Document everything—calls, emails, promises—for potential escalation",
+            "Be consistent (same process for everyone) and professional (no emotion)"
+          ]
+        },
+        {
+          id: "cf3-l4",
+          title: "Early Payment Incentives and Late Payment Penalties",
+          duration: "7 min",
+          transcript: `You can use financial incentives to motivate customers to pay faster. Let's talk about early payment discounts and late payment penalties.
+
+Early payment discounts work. The classic is "2/10 Net 30"—which means a 2% discount if paid within 10 days, otherwise full amount due in 30 days. From the customer's perspective, they save 2% for paying 20 days early. From your perspective, you get cash 20 days faster.
+
+Is the 2% discount worth it? Let's do the math. Getting paid 20 days early on a $10,000 invoice means $10,000 in your account sooner. The discount costs you $200. If your alternative is drawing on a 10% credit line for 20 days, that would cost you about $55 in interest. So you're paying $200 to get cash that would cost $55 on your line.
+
+On paper, the discount costs more. But in practice, it works because: Many customers will take the discount, speeding your overall cash cycle. The customers who pay fast become better, more reliable customers. And you avoid collection hassles and uncertainty.
+
+My recommendation: Offer the discount, but don't make it automatic. Offer 1-2% for payment within 10 days on your larger invoices or for customers who have good payment history. For smaller invoices or new customers, standard terms may be fine.
+
+Now, late payment penalties. You can add language like "1.5% per month on past-due balances" to your invoices. This communicates seriousness about timely payment.
+
+But here's the reality: Late fees rarely get collected. Customers dispute them, relationships get damaged, and pursuing a 1.5% fee isn't worth the hassle. Late fee language is more useful as a deterrent than as actual revenue.
+
+More effective than late fees: Communicate consequences. "We prioritize scheduling for customers who pay on time." "Deposit requirements increase for accounts with payment issues." "We can't start your next project until the outstanding balance is resolved."
+
+These aren't threats—they're reasonable business policies. And they're more motivating than a 1.5% fee that might never get collected.
+
+The best collection strategy: Make it easy and rewarding to pay on time, and create real consequences for paying late. Carrots and sticks, applied professionally.`,
+          keyPoints: [
+            "2/10 Net 30 means 2% discount for payment in 10 days vs full amount in 30",
+            "Early payment discounts speed cash even if they cost more than credit line interest",
+            "Late fee language deters late payment but fees are rarely collected",
+            "More effective: real consequences (scheduling priority, deposit requirements)",
+            "Make it easy to pay on time, create real consequences for paying late"
+          ]
+        }
+      ],
+      knowledgeCheck: [
+        {
+          id: "cf3-q1",
+          question: "What's the most important invoicing rule for improving collections?",
+          options: ["Send all invoices on the first of the month", "Invoice the same day work is completed", "Wait until the customer confirms satisfaction", "Invoice quarterly for simplicity"],
+          correctAnswer: 1,
+          explanation: "Invoice immediately when work is complete. Every day of delay adds to your collection cycle. Use mobile invoicing to send from the job site."
+        },
+        {
+          id: "cf3-q2",
+          question: "What does '2/10 Net 30' mean?",
+          options: ["2% deposit required, due in 10-30 days", "2% discount if paid in 10 days, otherwise due in 30", "Pay 2 invoices within 10 days, get 30 days free", "2% interest after 10 days, due in 30 days"],
+          correctAnswer: 1,
+          explanation: "2/10 Net 30 offers a 2% discount for payment within 10 days; otherwise, the full amount is due in 30 days. It incentivizes early payment."
+        },
+        {
+          id: "cf3-q3",
+          question: "When should you first follow up on an unpaid invoice?",
+          options: ["30 days after due date", "When you need the money", "Send a reminder 7 days BEFORE due date", "Only if the customer complains"],
+          correctAnswer: 2,
+          explanation: "Send a reminder before the due date—7 days is ideal. This prevents 'I forgot' delays and shows you track payments professionally."
+        },
+        {
+          id: "cf3-q4",
+          question: "Late payment fee language on invoices is most useful as:",
+          options: ["A major revenue source", "A deterrent that signals seriousness", "A legal requirement", "A way to negotiate discounts"],
+          correctAnswer: 1,
+          explanation: "Late fees are rarely collected in practice, but the language deters late payment by signaling that you take payment seriously."
+        },
+        {
+          id: "cf3-q5",
+          question: "For service and repair work, when is the best time to collect payment?",
+          options: ["Net 30 after invoicing", "On site when the work is complete", "After the customer's next project", "At year-end for tax purposes"],
+          correctAnswer: 1,
+          explanation: "Collect service/repair work on site when complete. You're there, the work is done—collect before leaving rather than invoicing and waiting."
+        }
+      ]
+    },
+    {
+      id: "cf-module-4",
+      number: 4,
+      title: "Building Cash Reserves",
+      duration: "30 min",
+      description: "Build the cash cushion that protects your business and enables growth.",
+      lessons: [
+        {
+          id: "cf4-l1",
+          title: "How Much Cash Reserve Do You Need?",
+          duration: "7 min",
+          transcript: `A cash reserve is money you set aside for emergencies, opportunities, and cash flow timing. It's your safety net. Let's figure out how much you need.
+
+The baseline recommendation is 3 months of operating expenses. If your overhead is $30,000 per month—rent, insurance, administrative payroll, minimum owner draw—your baseline reserve is $90,000.
+
+But contractors have extra considerations. You also need to fund active jobs. If your average float per job is $50,000 and you run three concurrent jobs, that's $150,000 tied up in work-in-progress. You can't use reserve cash for that—it's already spoken for.
+
+So think of it this way: You need three months of overhead ($90,000 in our example) PLUS your working capital for active jobs ($150,000) PLUS a buffer for growth or emergencies (let's say $30,000). Total: $270,000.
+
+That sounds like a lot, and it is. Most contractors don't have that much cash on hand. But here's the key insight: You don't need it all in savings. You need it accessible.
+
+This is where a line of credit comes in. A $100,000 line of credit counts toward your accessible reserves. If you have $170,000 in cash plus a $100,000 line, you have $270,000 accessible. You meet the need.
+
+Here's how I recommend structuring your reserves. First layer: 2-4 weeks of payroll in your operating checking account. This covers immediate obligations and prevents overdrafts. Second layer: 1-2 months of overhead in a savings account. This is your primary emergency fund—accessible within a day but not mixed with operating cash. Third layer: A credit line equal to 1-2 months of overhead, unused and available. This is your backup for larger emergencies or opportunities.
+
+This layered approach gives you quick access to small amounts, same-day access to moderate amounts, and credit access to large amounts. Each layer protects the next.
+
+What about excess cash beyond these reserves? That's a good problem to have. You can invest in equipment that improves productivity, pay down expensive debt, fund growth by hiring or marketing, or increase owner distributions since you've earned it.
+
+But don't skip the reserves to fund those things. Build the safety net first, then use excess cash for growth.`,
+          keyPoints: [
+            "Baseline: 3 months of operating expenses as reserve",
+            "Contractors also need working capital for active jobs—separate from reserves",
+            "You need reserves ACCESSIBLE, not necessarily all in savings—credit line counts",
+            "Layer it: 2-4 weeks payroll in checking, 1-2 months in savings, 1-2 months credit line",
+            "Build reserves first, then use excess cash for growth or distributions"
+          ]
+        },
+        {
+          id: "cf4-l2",
+          title: "Building Reserves on Tight Margins",
+          duration: "8 min",
+          transcript: `"I'd love to have reserves, but there's never any cash left over." I hear this constantly. Let's talk about how to build reserves even when margins are tight.
+
+First, accept this truth: Reserves won't build themselves. You have to make them a priority, just like payroll or rent. If you wait until money is "left over," there will never be any. Treat reserve building as a non-negotiable expense.
+
+The simplest method is the percentage method. Decide on a percentage of revenue—3% is a good starting point—and transfer that amount to reserves before you spend anything else. If you collect $50,000 this week, transfer $1,500 to a savings account before paying bills.
+
+"But I need that money for payroll!" Maybe. But maybe you're also spending money on things that could wait. The discipline of transferring first forces you to scrutinize other expenses.
+
+Let's look at painless places to find reserve money. First, price increases. If you raise prices 3%, that 3% can go entirely to reserves without affecting your lifestyle at all. You just keep operating as before, and the extra flows to savings. On $1 million revenue, that's $30,000 per year to reserves.
+
+Second, cut recurring expenses you don't notice. Audit your subscriptions, memberships, and recurring charges. Most contractors have $200-500 per month in forgotten or unused subscriptions. Cancel them and redirect to reserves.
+
+Third, collect deposits and hold them. When you collect a deposit, don't immediately spend it on materials for that job. Keep it in a separate account as long as possible. Time the material purchase to when you actually need the materials. This creates a float that, over time, becomes a de facto reserve.
+
+Fourth, tax overpayment refunds. If you get a tax refund, put it in reserves. This is found money—don't treat it as a windfall to spend.
+
+Fifth, profit windfalls. A job comes in way under cost and you pocket an extra $10,000? Put half in reserves. Bonuses and windfalls are the fastest way to build a cushion.
+
+The key mindset shift: Think of reserves as "first dollar" spending, not "last dollar" saving. Pay yourself (into reserves) before you pay everyone else. The business will adjust to having slightly less available, and you'll have a safety net growing month by month.`,
+          keyPoints: [
+            "Reserves won't build themselves—treat them as non-negotiable, like payroll",
+            "Percentage method: Transfer 3-5% of collections to savings FIRST",
+            "Raise prices 3% and direct the increase entirely to reserves",
+            "Cut forgotten subscriptions ($200-500/month is common)",
+            "Deposits: Collect them and hold them, time material purchases to actual need"
+          ]
+        },
+        {
+          id: "cf4-l3",
+          title: "Lines of Credit: Your Cash Flow Safety Valve",
+          duration: "8 min",
+          transcript: `A business line of credit is one of the most important tools for contractor cash management. Let me explain what it is, how to get one, and how to use it right.
+
+A line of credit is borrowing capacity that you can access when needed. Unlike a term loan where you get a lump sum, a line lets you draw only what you need, when you need it. You pay interest only on what you've drawn. It's like a credit card, but with much lower interest rates.
+
+For contractors, a line of credit serves one primary purpose: smoothing out cash flow timing. When you're waiting on a big payment but payroll is due, you draw on the line. When the payment arrives, you pay down the line. It bridges the gap.
+
+Here's the critical rule: Get the line BEFORE you need it. Banks lend to businesses that don't desperately need money. If you apply during a cash crisis, you'll be denied. Apply when business is stable, your books look good, and you have time to shop for the best terms.
+
+How much line should you seek? 10-15% of annual revenue is a good target for contractors. If you do $1 million per year, a $100,000-150,000 line gives you flexibility for most timing gaps.
+
+What will the bank want to see? At least two years of business tax returns. Recent financial statements (P&L, balance sheet). Often a personal guarantee from the owner. Good personal credit (above 680, ideally above 720). Evidence of consistent revenue and profitability.
+
+Shop multiple banks. Your relationship bank might give you an easy approval, but their rates might be higher. Online lenders like Fundbox or BlueVine offer faster approval but often higher rates. SBA-backed lines offer good terms but slower approval.
+
+How to use the line correctly: Only draw for true working capital needs—payroll, materials, timing gaps. Never draw to fund losses or lifestyle. Pay it down as quickly as possible when cash comes in. Keep utilization below 50% most of the time—if you're constantly maxed out, you've got a bigger problem.
+
+Monitor your line usage as a health metric. If you used to draw occasionally and now you're drawn constantly, something changed. Your margins might have slipped, or your collections might have slowed. The line is telling you something.
+
+One more thing: Renew your line annually before it expires. Banks sometimes non-renew lines without warning. Stay ahead of it by starting the renewal conversation 60 days early.`,
+          keyPoints: [
+            "Line of credit = borrowing capacity you draw when needed, repay when you can",
+            "Get the line BEFORE you need it—banks don't lend to desperate businesses",
+            "Target: 10-15% of annual revenue ($100K-150K on $1M revenue)",
+            "Only draw for working capital needs, pay down quickly, keep utilization under 50%",
+            "Monitor line usage as a health metric—constant draws indicate a bigger problem"
+          ]
+        },
+        {
+          id: "cf4-l4",
+          title: "Seasonal Cash Planning",
+          duration: "7 min",
+          transcript: `Most contracting businesses have seasonality. Certain months are busy and cash-rich; others are slow and cash-hungry. Planning for this cycle is essential.
+
+First, know your pattern. Look at the last three years of monthly revenue. When are your strong months? When are your weak months? For many contractors, spring and summer are busy, while late fall and winter are slow. But it varies—HVAC contractors are busy when it's hot or cold, not temperate.
+
+Map your cash needs against this pattern. During busy months, you need more working capital to fund more jobs. During slow months, you need reserves to cover fixed costs without revenue.
+
+Here's a planning framework. Identify your two or three strongest cash months—maybe June through August. These are your "storage" months. Identify your two or three weakest cash months—maybe December through February. These are your "draw" months.
+
+During storage months, aggressively build reserves. If you normally transfer 3% of collections, transfer 5% or more during your strong months. If you have profits to distribute, take smaller draws and leave more in the business. This is harvest time—you're storing for winter.
+
+During draw months, you'll likely spend from reserves. That's fine. Plan for it. If you know you'll need $30,000 from reserves to get through January and February, have $30,000 in reserves by late November.
+
+Other seasonal considerations: Pay annual expenses during strong months. If insurance premiums, tax prepayments, or large equipment purchases can be timed, time them for your strong months when cash is flush.
+
+Build a "slow season" expense budget. Know exactly what you need to get through a slow month with minimal revenue. Rent, utilities, insurance, minimum payroll, essential overhead. If that's $25,000, you know your monthly floor.
+
+Adjust work flow in advance. As your busy season ends, tighten up: reduce discretionary spending, defer non-essential purchases, collect aggressively. Don't get caught celebrating the end of busy season while cash bleeds out.
+
+Finally, use slow season productively. Train your team, maintain equipment, plan for next year, work on your business instead of in it. Slow months aren't dead months if you use them strategically.
+
+That completes Cash Flow Mastery. Take your knowledge check, and if you pass, you'll earn your certificate. You now have the tools to forecast, accelerate, and protect your cash flow.`,
+          keyPoints: [
+            "Know your pattern: analyze 3 years of monthly revenue for seasonal peaks and valleys",
+            "Storage months: build reserves aggressively during strong cash months",
+            "Draw months: plan to spend reserves during slow months—that's what they're for",
+            "Time annual expenses (insurance, taxes, equipment) to strong cash months",
+            "Use slow season productively: training, maintenance, planning"
+          ]
+        }
+      ],
+      knowledgeCheck: [
+        {
+          id: "cf4-q1",
+          question: "What's the baseline cash reserve recommendation for contractors?",
+          options: ["1 month of revenue", "3 months of operating expenses (plus working capital for jobs)", "6 months of payroll only", "Whatever is left after expenses"],
+          correctAnswer: 1,
+          explanation: "The baseline is 3 months of operating expenses, but contractors also need working capital for active jobs and a buffer for growth. Total accessible reserves (including credit lines) should cover all three."
+        },
+        {
+          id: "cf4-q2",
+          question: "When should you apply for a business line of credit?",
+          options: ["During a cash crisis when you need it most", "Before you need it, when business is stable", "After you've exhausted all other options", "Only when banks are offering promotions"],
+          correctAnswer: 1,
+          explanation: "Get the line BEFORE you need it. Banks lend to stable businesses, not desperate ones. Apply when your books look good and you have time to shop for best terms."
+        },
+        {
+          id: "cf4-q3",
+          question: "The 'percentage method' for building reserves means:",
+          options: ["Investing a percentage in stocks", "Transferring a percentage of collections to savings FIRST, before spending", "Holding a percentage of accounts receivable", "Discounting invoices by a percentage"],
+          correctAnswer: 1,
+          explanation: "Transfer a set percentage (3-5%) of collections to reserves before paying any other bills. This treats reserves as a non-negotiable expense."
+        },
+        {
+          id: "cf4-q4",
+          question: "What should you do during your 'storage' (strong cash) months?",
+          options: ["Increase owner draws to reward yourself", "Aggressively build reserves and reduce debt", "Relax your collection efforts", "Take on debt for equipment purchases"],
+          correctAnswer: 1,
+          explanation: "Strong cash months are for building reserves. Transfer more to savings, pay down debt, and prepare for slower months ahead."
+        },
+        {
+          id: "cf4-q5",
+          question: "If you're constantly drawing on your line of credit, it indicates:",
+          options: ["You're using the line correctly", "Your business has a deeper cash flow problem", "Banks will increase your limit", "You should apply for another line"],
+          correctAnswer: 1,
+          explanation: "Constant line usage indicates something's wrong—margins may have slipped, collections slowed, or you're undercapitalized. The line should be for occasional timing gaps, not constant reliance."
+        }
+      ]
+    }
+  ]
+};
+
+// Course catalog
+export const allCourses: Course[] = [
+  contractorFinanceFundamentals,
+  quickbooksSetupForContractors,
+  cashFlowMastery
+];
+
+// Helper to find course by slug
+export function getCourseBySlug(slug: string): Course | undefined {
+  return allCourses.find(course => course.slug === slug);
+}
+
 // Helper to get total questions count
 export function getTotalQuestions(course: Course): number {
   return course.modules.reduce((total, module) => total + module.knowledgeCheck.length, 0);

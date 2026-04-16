@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
@@ -6,6 +7,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
+const GA_ID = "G-LTVZH6KBQV";
 
 // Organization structured data
 const organizationSchema = {
@@ -126,6 +128,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

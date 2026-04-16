@@ -106,6 +106,22 @@ export function Footer() {
             <h4 className="font-semibold text-[var(--text)] mb-4">Get Help</h4>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link
+                  href="/resources"
+                  className="text-[var(--muted)] hover:text-[var(--text)]"
+                >
+                  All Resources
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/certification"
+                  className="text-[var(--muted)] hover:text-[var(--text)]"
+                >
+                  Certification Program
+                </Link>
+              </li>
+              <li>
                 <a
                   href="https://command-advisors.com"
                   target="_blank"

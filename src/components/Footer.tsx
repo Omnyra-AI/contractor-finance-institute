@@ -123,16 +123,6 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://command-advisors.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[var(--muted)] hover:text-[var(--text)]"
-                >
-                  What is a Command Advisor?
-                </a>
-              </li>
-              <li>
-                <a
                   href="https://go.omnyra.ai"
                   target="_blank"
                   rel="noopener noreferrer"

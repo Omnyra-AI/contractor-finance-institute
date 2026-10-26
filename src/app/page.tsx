@@ -199,7 +199,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold text-[var(--text)] mb-8 text-center">
             More Resources
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             <a
               href="https://contractorcfo.org/tools"
               target="_blank"
@@ -224,19 +224,6 @@ export default function Home() {
               </h3>
               <p className="text-[var(--muted)] text-sm">
                 In-depth guides on cash flow, taxes, and job costing.
-              </p>
-            </a>
-            <a
-              href="https://command-advisors.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-6 rounded-2xl bg-[var(--panel)]/50 border border-white/5 hover:border-[var(--teal)]/30 transition-all hover:no-underline group"
-            >
-              <h3 className="text-lg font-semibold text-[var(--text)] mb-2 group-hover:text-[var(--teal)]">
-                What is a Command Advisor?
-              </h3>
-              <p className="text-[var(--muted)] text-sm">
-                Learn about the modern alternative to fractional CFOs.
               </p>
             </a>
           </div>

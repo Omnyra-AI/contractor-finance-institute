@@ -28,13 +28,6 @@ const resources = [
     href: "https://the-owners-playbook.com",
     external: true,
   },
-  {
-    title: "What is a Command Advisor?",
-    description:
-      "Learn about the modern alternative to fractional CFOs for service businesses.",
-    href: "https://command-advisors.com",
-    external: true,
-  },
 ];
 
 export default function ResourcesPage() {

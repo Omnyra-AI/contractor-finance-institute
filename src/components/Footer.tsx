@@ -123,7 +123,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://go.omnyra.ai"
+                  href="https://omnyra.ai/book"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[var(--muted)] hover:text-[var(--text)]"

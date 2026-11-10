@@ -65,7 +65,7 @@ export default function Home() {
                 Browse Free Courses
               </Link>
               <a
-                href="https://go.omnyra.ai"
+                href="https://omnyra.ai/book"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 bg-[var(--panel)] text-[var(--text)] font-semibold rounded-xl border border-white/10 hover:no-underline hover:border-white/20 transition-all text-lg"
@@ -181,7 +181,7 @@ export default function Home() {
               If you want hands-on help implementing what you learn, you can
               always{" "}
               <a
-                href="https://go.omnyra.ai"
+                href="https://omnyra.ai/book"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -249,7 +249,7 @@ export default function Home() {
                 Start Free Course
               </Link>
               <a
-                href="https://go.omnyra.ai"
+                href="https://omnyra.ai/book"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 bg-[var(--panel)] text-[var(--text)] font-semibold rounded-xl border border-white/10 hover:no-underline hover:border-white/20 transition-all"
